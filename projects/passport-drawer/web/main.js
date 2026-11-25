@@ -153,7 +153,7 @@ function applyLight(L, focus) {
   fill.color.set(L.fill || '#ffffff'); fill.intensity = L.fillI ?? 0.45;
   scene.fog.color.set(L.fog); scene.fog.near = L.fogNear; scene.fog.far = L.fogFar;
   skyU.top.value.set(L.skyTop); skyU.hor.value.set(L.skyHor); skyU.sunCol.value.set(L.sunDisc || '#000'); skyU.sunSize.value = L.sunSize || 0;
-  inkU.sat.value = L.sat ?? 1.08; inkU.gain.value.set(L.gain || '#ffffff'); inkU.lift.value.set(L.lift || '#000000'); inkU.vig.value = L.vig ?? 0.2;
+  inkU.sat.value = (L.sat ?? 1.08) * 1.22; inkU.gain.value.set(L.gain || '#ffffff'); inkU.lift.value.set(L.lift || '#000000'); inkU.vig.value = L.vig ?? 0.2;
   const az = rx(L.az), el = rx(L.el); tmpV.set(Math.cos(el) * Math.cos(az), Math.sin(el), Math.cos(el) * Math.sin(az));
   skyU.sunDir.value.copy(tmpV); sun.position.copy(focus).addScaledVector(tmpV, 90); sun.target.position.copy(focus);
   fill.position.copy(focus).add(new THREE.Vector3(-tmpV.x, 0.6, -tmpV.z).multiplyScalar(50)); fill.target.position.copy(focus);

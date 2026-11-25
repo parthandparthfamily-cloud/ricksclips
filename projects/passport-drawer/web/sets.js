@@ -8,7 +8,7 @@ export function buildSets(THREE, scene, K, T) {
   const glassMat = (col = '#bfe3f2', op = 0.22) => new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: op, depthWrite: false, side: THREE.DoubleSide });
   const glass = (parent, geo, x, y, z, o = {}) => { const m = add(parent, geo, glassMat(o.col, o.op), x, y, z, { cast: false, ...o }); m.userData.ndSkip = true; m.renderOrder = 3; return m; };
   const M = {
-    sand: texM(K.sand(21), 300, 300), sandPad: texM(K.sand(23, '#e3bf80'), 30, 30), asphalt: texM(K.concrete(5, [220, 8, 34]), 4, 60), apron: texM(K.concrete(6, [210, 6, 72]), 30, 30),
+    sand: texM(K.sand(21, '#ead8b2'), 300, 300), sandPad: texM(K.sand(23, '#e6d4ae'), 30, 30), asphalt: texM(K.concrete(5, [220, 8, 34]), 4, 60), apron: texM(K.concrete(6, [210, 6, 72]), 30, 30),
     tiles: texM(K.tiles('#efe9df', '#dcd4c6', 4), 1, 1), marble: texM(K.tiles('#f3ede2', '#e6d9c2', 2, '#c9b998'), 1, 1),
     plasterW: texM(K.plaster(8, 40), 1, 1), plasterG: texM(K.plaster(18, 150), 2, 1), white: toon('#f4f4f2'), steel: toon('#9aa3ab'), dark: toon('#2b2f3a'),
     wood: texM(K.wood(31), 1, 1), woodD: texM(K.wood(32, 22, 30), 1, 1), carpet: texM(K.carpet('#7a2e3a', '#e2b85c'), 1, 1), wallpaper: texM(K.wallpaper('#d6e8d0', '#a7ccaa'), 1, 1),

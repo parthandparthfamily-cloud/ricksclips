@@ -365,7 +365,7 @@ shot({ id: 'gohome', a: 1291, set: 'yard', light: 'hot', tin: 'dis', blur: (f) =
   world: () => ({ gate: 0.38, cop: null, poster: 1 }),
   actors: (f) => [A(f, 'hero', HERO, heroP22(f), { expr: ex(f, [[1291, 'smile'], [1320, 'grin']]), walk: q((f * 0.045) % 1), L: 'hold', R: 'hang' }),
     A(f, 'gate', EXO(151, 'work'), [8.4, 0, 53.6], { expr: 'bored', R: f > 1310 ? 'wave' : 'hang', L: 'hang' })],
-  fx: (f, C, act) => { const out = [F('duffel', A3(hand(act[0], C, 'L'), [0, -0.1, 0]), { s: 1.3, r: [0, 0.4, 0] })]; puffs(out, [1, 0.2, 49], f, 1300, 3, 61, { s: 0.6, life: 40, v: 2, c: '#e6d2a6' }); return out; },
+  fx: (f, C, act) => { const out = [F('duffel', A3(hand(act[0], C, 'L'), [0, -0.1, 0]), { s: 1.3, r: [0, 0.4, 0] })]; puffs(out, [1, 0.15, 50.5], f, 1300, 3, 61, { s: 0.3, life: 40, v: 1.4, c: '#e6d2a6' }); return out; },
   dof: (f, C) => ({ focus: dist(C.pos, A3(heroP22(f), [0, 1.4, 0])), cinf: 6 }) });
 
 // ---- 23. "You walk up to the airport counter and the officer asks you one question" (1347–1449)
