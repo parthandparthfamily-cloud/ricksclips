@@ -52,3 +52,17 @@ Every mistake that has already happened once, so it never happens twice.
 - **Skipping the gate.** "Go" means run the checklist first, then ship.
 - **EEVEE "Shadow buffer full".** Too many shadow-casting lamps on a 6 GB GPU. Raise `shadow_pool_size`, halve `shadow_resolution_scale`,
   and let only key lights cast shadows.
+
+## Build lessons (The Dream Job That Keeps Your Passport, Nov 2026)
+- **Provided word timestamps are the timing source.** If the user hands over a transcript JSON with word times, convert it to
+  `work/words.json` (`{w,s,e}`) and skip Whisper. Don't silence-trim that voice: trimming shifts every given timestamp.
+- **A per-frame sway can undo a set rotation.** `obj.rotation.y = 0.04*sin(f)` wiped a sign's 180° turn, so the banner showed its
+  dark back. Always add the sway to the base angle.
+- **`tbox` UVs are already world-scaled** (one tile per `t` metres). Leave the material's texture repeat at 1,1, or floor tiles
+  shrink into mush that reads like sand.
+- **Mirrored (`flip`) cards swap hands.** Compute held-prop and hand positions with the flip, or a hand-over flies out of frame.
+- **9:16 inside small rooms:** bunks along the walls fall outside a ±1.6 m frame. Put action in the aisle (card players, a cook)
+  so every room shot has faces in frame.
+- **Held props are 3D too** (contract, payslip, passport, phone, bricks, duffel): place them at the hand position computed
+  from the camera, not painted on the card. Painted props blur in macros.
+- **Laptops, chairs and desk clutter hide seated characters.** Check every desk shot from the camera side before rendering.
