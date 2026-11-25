@@ -1,0 +1,18 @@
+<!doctype html><html><head><meta charset="utf-8"><style>@font-face{font-family:L;src:url(fonts/LilitaOne.ttf)}html,body{margin:0;background:#000}</style></head><body><canvas id="c" width="3000" height="1700"></canvas>
+<script>window.addEventListener('error',e=>{window.err=String(e.message)});</script>
+<script type="module">
+import * as T from './toon.js';
+import { CAST } from './cast_sheet.js';
+await document.fonts.load('40px L');
+const c=document.getElementById('c'),g=c.getContext('2d');
+g.fillStyle='#f0c25e';g.fillRect(0,0,3000,1700);
+g.fillStyle='#2b1f1c';g.font='64px L';g.fillText('THE DREAM JOB THAT KEEPS YOUR PASSPORT — new cast',60,90);
+const keys=Object.keys(CAST);
+keys.forEach((k,i)=>{const C=CAST[k];const x=170+i*290,y=760;g.save();g.translate(x,y);g.scale(0.62,0.62);T.rick(g,C.o,C.opts);g.restore();
+ g.fillStyle='#2b1f1c';g.font='30px L';g.textAlign='center';g.fillText(C.label,x,820);g.textAlign='left';});
+// expression row: hero head-and-shoulders across the emotions the story needs
+const ex=['beam','grin','smile','think','nervous','shock','bored','sleepy','stern','laugh'];
+g.font='40px L';g.fillText('YOU — expression range',60,930);
+ex.forEach((e,i)=>{const x=170+i*290,y=1600;g.save();g.translate(x,y);g.scale(0.55,0.55);T.rick(g,CAST.heroWork.o,{expr:e,L:'hang',R:'hang'});g.restore();g.font='30px L';g.textAlign='center';g.fillText(e,x,1660);g.textAlign='left';});
+window.ready=true;
+</script></body></html>
