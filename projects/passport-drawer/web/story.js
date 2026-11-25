@@ -9,7 +9,7 @@ const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
 const lerp = (a, b, t) => a + (b - a) * t;
 const L3 = (a, b, t) => a.map((v, i) => lerp(v, b[i], t));
 const sm = (t) => { t = clamp(t); return t * t * t * (t * (t * 6 - 15) + 10); };
-const eo = (t) => { t = clamp(t); return 1 - Math.pow(1 - t, 4); };
+const eo = (t) => { t = clamp(t); return sm(1 - Math.pow(1 - t, 2.2)); }; // fast early, but eased start and settle (no one-frame jumps)
 const ramp = (f, a, b) => clamp((f - a) / (b - a));
 const q = (x, n = 0.02) => Math.round(x / n) * n;
 const A3 = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
@@ -212,7 +212,7 @@ shot({ id: 'keep', a: 321, set: 'terminal', light: 'hall', cont: true,
 
 // ---- 9. "For safekeeping" (376–413): into the breast pocket, pat, wink
 shot({ id: 'pocket', a: 376, set: 'terminal', light: 'hall', cont: true,
-  keys: [K(386, [0.5, 1.25, 5.55], [0.42, 1.12, 7], 42), K(394, [0.52, 1.28, 5.5], [0.42, 1.18, 7], 42, 'l'), K(404, [0.6, 1.55, 4.2], [0.45, 1.5, 7], 45), K(415, [0.65, 1.56, 4.05], [0.45, 1.5, 7], 45, 'l')],
+  keys: [K(386, [0.5, 1.25, 4.95], [0.42, 1.12, 7], 42), K(394, [0.52, 1.28, 4.9], [0.42, 1.18, 7], 42, 'l'), K(404, [0.6, 1.55, 4.2], [0.45, 1.5, 7], 45), K(415, [0.65, 1.56, 4.05], [0.45, 1.5, 7], 45, 'l')],
   world: () => ({ doors: 1 }),
   actors: (f) => { const out = [
     A(f, 'boss', BOSS, [0.45, 0, 7.0], { expr: ex(f, [[376, 'grin'], [390, 'wink']]), talk: talkAt(f, [[377, 399]]), R: f < 386 ? 'holdUp' : arm('holdUp', 'hold', ramp(f, 386, 392)), L: f > 396 ? 'thumb' : 'hip', look: 0.2 }),
@@ -273,7 +273,7 @@ shot({ id: 'late', a: 689, set: 'yard', light: 'hot', tin: 'dis',
   actors: (f) => { const out = []; QUEUE.forEach(([x, z], i) => out.push(i === 0 ? A(f, 'hero', HEROW, [x, 0, z], { expr: ex(f, [[689, 'grin'], [722, 'smile'], [738, 'shock'], [746, 'nervous']]), R: f < 738 ? 'hold' : 'hang', L: f >= 738 ? 'up' : 'hang', look: 0.8 })
     : A(f, 'q' + i, EXO(100 + i, 'work'), [x, 0, z], { expr: f > 738 ? (i % 2 ? 'shock' : 'angry') : ['bored', 'sleepy', 'bored', 'think', 'sleepy', 'bored'][i % 6], R: i % 3 === 0 ? 'mouth' : 'hang', L: i % 2 ? 'hip' : 'hang', look: 0.8 })));
     return out; },
-  fx: (f, C, act) => { const out = []; puffs(out, [8.3, 1.2, 14], f, 738, 5, 7, { s: 0.45, v: 1.6, c: '#e6d6b8' }); for (let i = 0; i < 3; i++) fly(out, [6 - i * 1.4, 1.9, 14.1], f, i * 7, 0.4); if (f > 740) sweat(out, headOf(act[0]), f, 3); return out; },
+  fx: (f, C, act) => { const out = []; puffs(out, [8.3, 1.2, 14], f, 738, 5, 7, { s: 0.35, v: 1.6, c: '#e6d2a6' }); for (let i = 0; i < 3; i++) fly(out, [6 - i * 1.4, 1.9, 14.1], f, i * 7, 0.4); if (f > 740) sweat(out, headOf(act[0]), f, 3); return out; },
   dof: (f, C) => ({ focus: f < 708 ? dist(C.pos, [8.44, 2.5, 14]) : dist(C.pos, [7.5, 1.5, 14]), cinf: 6 }) });
 
 // ---- 15. "Paperwork," he says (750–788) — office, the stack topples
@@ -306,7 +306,7 @@ shot({ id: 'site', a: 841, set: 'yard', light: 'hot', tin: 'dis',
     return out; },
   fx: (f, C, act) => { const out = []; act.forEach((a, i) => { if (a.id === 'hero' || a.id.startsWith('wk')) { const l = hand(a, C, 'L'), r = hand(a, C, 'R'); out.push(F('bricks', A3(L3(l, r, 0.5), [0, -0.12, 0]), { s: 1.4, r: [0, 0.3, 0] })); } });
     const t = ramp(f, 868, 896); if (t > 0 && t < 1) { const p = L3([24, 4, -36], [13.6, 2.0, -16.4], sm(t)); p[1] += Math.sin(t * 6) * 0.5; out.push(F('contract', p, { r: [f * 0.25, f * 0.1, f * 0.18], s: 2.4 })); }
-    puffs(out, [12, 0.3, -18], f, 850, 3, 3, { s: 0.6, life: 40 }); puffs(out, [20, 0.2, -26], f, 875, 3, 4, { s: 0.5, life: 30 }); if (f > 896) sweat(out, headOf(act[0]), f, 2); return out; },
+    puffs(out, [12, 0.3, -18], f, 850, 3, 3, { s: 0.6, life: 40, c: '#e6d2a6' }); puffs(out, [20, 0.2, -26], f, 875, 3, 4, { s: 0.5, life: 30, c: '#e6d2a6' }); if (f > 896) sweat(out, headOf(act[0]), f, 2); return out; },
   dof: (f, C) => ({ focus: f < 880 ? 20 : dist(C.pos, A3(heroP17(f), [0, 1.4, 0])), cinf: f < 880 ? 2 : 6 }) });
 
 // ---- 18. "and the room you were promised has eleven other guys in it" (913–994)
@@ -325,7 +325,7 @@ shot({ id: 'quit', a: 995, set: 'office', light: 'office', tin: 'dis',
   actors: (f) => [
     A(f, 'hero', HEROW, [-0.55, 0, 0.25], { expr: ex(f, [[995, 'stern'], [1017, 'smirk'], [1031, 'grin'], [1044, 'smugsmile']]), R: f < 1008 ? 'holdUp' : f < 1020 ? 'hold' : f > 1040 ? 'thumb' : 'hip', L: 'hip' }),
     A(f, 'boss', BOSS, [0.1, 0.59, -2.0], { expr: ex(f, [[995, 'smirk'], [1018, 'shock'], [1030, 'sly'], [1044, 'laugh']]), L: 'chin', R: 'chin', talk: f > 1044 ? talkAt(f, [[1044, 1058]]) * 0.6 : 0 }, { sit: true })],
-  fx: (f, C, act) => { const out = []; if (f < 1008) out.push(F('paper', A3(hand(act[0], C, 'R'), [0, 0.1, 0]), { face: true, flat: true, s: 1.3 })); puffs(out, [-0.2, 0.9, -0.75], f, 1017, 6, 33, { s: 0.08, v: 0.6 }); burst(out, 'paper', [-0.6, 1.0, -0.8], f, 1018, 4, 1.2, 18, 41, { g: 1, s: 0.7, shrink: 0 }); return out; },
+  fx: (f, C, act) => { const out = []; if (f < 1008) out.push(F('paper', A3(hand(act[0], C, 'R'), [0, 0.1, 0]), { face: true, flat: true, s: 1.3 })); puffs(out, [-0.2, 0.9, -0.75], f, 1017, 6, 33, { s: 0.04, v: 0.5, c: '#efe6d2' }); burst(out, 'paper', [-0.6, 1.0, -0.8], f, 1018, 4, 1.2, 18, 41, { g: 1, s: 0.7, shrink: 0 }); return out; },
   dof: (f, C) => ({ focus: f > 1010 && f < 1032 ? dist(C.pos, [-0.2, 0.9, -0.75]) : dist(C.pos, [-0.2, 1.3, -1]), cinf: f > 1010 && f < 1032 ? 12 : 6 }) });
 
 // ---- 20. "Except your visa is tied to him, and so is your right to stay in the country" (1059–1167) — the VISA chain
@@ -365,7 +365,7 @@ shot({ id: 'gohome', a: 1291, set: 'yard', light: 'hot', tin: 'dis', blur: (f) =
   world: () => ({ gate: 0.38, cop: null, poster: 1 }),
   actors: (f) => [A(f, 'hero', HERO, heroP22(f), { expr: ex(f, [[1291, 'smile'], [1320, 'grin']]), walk: q((f * 0.045) % 1), L: 'hold', R: 'hang' }),
     A(f, 'gate', EXO(151, 'work'), [8.4, 0, 53.6], { expr: 'bored', R: f > 1310 ? 'wave' : 'hang', L: 'hang' })],
-  fx: (f, C, act) => { const out = [F('duffel', A3(hand(act[0], C, 'L'), [0, -0.1, 0]), { s: 1.3, r: [0, 0.4, 0] })]; puffs(out, [1, 0.2, 49], f, 1300, 3, 61, { s: 0.6, life: 40, v: 2 }); return out; },
+  fx: (f, C, act) => { const out = [F('duffel', A3(hand(act[0], C, 'L'), [0, -0.1, 0]), { s: 1.3, r: [0, 0.4, 0] })]; puffs(out, [1, 0.2, 49], f, 1300, 3, 61, { s: 0.6, life: 40, v: 2, c: '#e6d2a6' }); return out; },
   dof: (f, C) => ({ focus: dist(C.pos, A3(heroP22(f), [0, 1.4, 0])), cinf: 6 }) });
 
 // ---- 23. "You walk up to the airport counter and the officer asks you one question" (1347–1449)
@@ -444,7 +444,7 @@ shot({ id: 'same', a: 1896, set: 'yard', light: 'hot', tin: 'dis',
   keys: [K(1896, [10.6, 1.6, -28.8], [12.8, 1.25, -21.6], 50), K(1937, [17.0, 1.65, -28.6], [19, 1.25, -21.6], 50, 'l'), K(1950, [14.3, 1.65, -6.3], [16.7, 1.3, -4.0], 48), K(1975, [14.4, 1.65, -6.0], [16.7, 1.3, -4.0], 48, 'l')],
   actors: (f) => { if (f < 1944) { const out = []; for (let i = 0; i < 5; i++) { const x = lerp(9 + i * 2.2, 15 + i * 2.2, ramp(f, 1896, 1944)); out.push(A(f, i === 2 ? 'hero' : 'ln' + i, i === 2 ? HEROW : EXO(130 + i, 'work'), [x, 0, -21.6 + (i % 2) * 0.3], { expr: 'bored', headTilt: 12, walk: q((f * 0.04 + i * 0.2) % 1), L: 'hold', R: 'hold', look: 0 })); } return out; }
     return [A(f, 'hero', HEROW, [16.25, 0, -4.35], { expr: ex(f, [[1944, 'bored'], [1956, 'smile']]), R: f % 16 < 8 ? 'holdUp' : 'hold', L: 'hang', look: 0.6 }), A(f, 'bunk', BUNK, [15.2, 0, -3.0], { expr: 'grin', R: 'thumb', look: 0.7 })]; },
-  fx: (f, C, act) => { const out = []; if (f < 1944) act.forEach((a) => out.push(F('bricks', A3(L3(hand(a, C, 'L'), hand(a, C, 'R'), 0.5), [0, -0.12, 0]), { s: 1.4, r: [0, 0.3, 0] }))); else for (const [f0, i] of [[1950, 0], [1958, 1], [1966, 2]]) note(out, hand(act[0], C, 'R'), SLOT, f, f0 - 6, 8, i, 1.4); puffs(out, [14, 0.2, -23], f, 1900, 3, 8, { s: 0.5, life: 40 }); return out; },
+  fx: (f, C, act) => { const out = []; if (f < 1944) act.forEach((a) => out.push(F('bricks', A3(L3(hand(a, C, 'L'), hand(a, C, 'R'), 0.5), [0, -0.12, 0]), { s: 1.4, r: [0, 0.3, 0] }))); else for (const [f0, i] of [[1950, 0], [1958, 1], [1966, 2]]) note(out, hand(act[0], C, 'R'), SLOT, f, f0 - 6, 8, i, 1.4); puffs(out, [14, 0.2, -23], f, 1900, 3, 8, { s: 0.5, life: 40, c: '#e6d2a6' }); return out; },
   dof: (f, C) => ({ focus: f < 1944 ? dist(C.pos, [12, 1.2, -21.6]) : dist(C.pos, [16.4, 1.4, -4.2]), cinf: 5, near: 1.4 }) });
 
 // ---- 31. "Then one morning his bunk is empty" (1974–2029)
@@ -476,7 +476,7 @@ shot({ id: 'law', a: 2156, set: 'archive', light: 'archive', tin: 'dis',
 // ---- 34. "But a law doesn't do much when nobody enforces it" (2262–2334)
 shot({ id: 'enforce', a: 2262, set: 'archive', light: 'archive', cont: true,
   keys: [K(2276, [-1.3, 1.95, 1.75], [0, 1.6, 0], 46), K(2294, [-1.15, 1.95, 1.55], [0, 1.65, 0], 46, 'l'), K(2306, [-0.75, 2.05, 1.05], [0.15, 2.15, 0.15], 44), K(2312, [-0.72, 2.05, 1.0], [0.15, 2.12, 0.15], 44, 'l'), K(2322, [-0.1, 1.75, 0.9], [-1.9, 1.5, -3.8], 50), K(2338, [-0.15, 1.75, 0.75], [-1.9, 1.6, -3.9], 49, 'l')],
-  world: (f) => ({ web: lerp(0.05, 1, sm(ramp(f, 2262, 2300))), spider: sm(ramp(f, 2297, 2330)) }),
+  world: (f) => ({ web: lerp(0.05, 0.55, sm(ramp(f, 2262, 2300))), spider: sm(ramp(f, 2297, 2330)) }),
   actors: (f) => [guard(f)],
   fx: (f) => { const out = []; zz(out, [-1.9, 1.3, -3.7], f, 4); motes(out, [-3, 0.5, -3, 3, 3.5, 3], f, 40, 21); puffs(out, [0, 2.05, 0], f, 2268, 4, 91, { s: 0.2, v: 0.4, c: '#d8d0c0', life: 40 }); return out; },
   dof: (f, C) => ({ focus: f < 2316 ? dist(C.pos, [0, 1.9, 0]) : dist(C.pos, [-1.9, 1.3, -3.75]), cinf: 7 }) });
@@ -500,7 +500,7 @@ shot({ id: 'slam', a: 2406, set: 'office', light: 'office', tin: 'dis', blur: (f
   keys: [K(2406, [0.7, 4, -22], [0.85, 0.7, -1.5], 56), K(2420, [0.88, 1.25, -2.85], [0.92, 0.6, -1.5], 46, 's'), K(2434, [0.95, 1.12, -2.55], [0.92, 0.55, -1.5], 42, 'l'), K(2446, [1.7, 1.9, -3.5], [0.4, 0.85, -1.6], 52), K(2460, [1.8, 2.0, -3.6], [0.35, 0.9, -1.6], 53, 'l')],
   world: (f) => ({ drawer: 1 - eo(ramp(f, 2419, 2423)), topple: 1, letter: 1 }),
   actors: (f) => [A(f, 'boss', BOSS, [-0.15, 0.59, -2.0], { expr: ex(f, [[2406, 'smugsmile'], [2423, 'laugh']]), R: f > 2418 && f < 2424 ? 'hold' : 'hip', L: 'hip', talk: f > 2426 ? talkAt(f, [[2426, 2457]]) * 0.5 : 0 }, { sit: true })],
-  fx: (f) => { const out = []; puffs(out, [0.92, 0.6, -1.5], f, 2423, 8, 111, { s: 0.1, v: 0.9 }); burst(out, 'paper', [0.6, 1.0, -1.3], f, 2423, 6, 2.0, 30, 112, { g: 1.6, s: 0.7, shrink: 0 }); burst(out, 'coin', [0.9, 0.9, -1.4], f, 2423, 10, 1.8, 30, 113, { g: 4, s: 1.0, shrink: 0 }); glint(out, [0.92, 0.56, -1.47], f, 2430, 18, 0.7); return out; },
+  fx: (f) => { const out = []; puffs(out, [0.92, 0.6, -1.5], f, 2423, 8, 111, { s: 0.05, v: 0.8, c: '#efe6d2' }); burst(out, 'paper', [0.6, 1.0, -1.3], f, 2423, 6, 2.0, 30, 112, { g: 1.6, s: 0.7, shrink: 0 }); burst(out, 'coin', [0.9, 0.9, -1.4], f, 2423, 10, 1.8, 30, 113, { g: 4, s: 0.55, shrink: 0 }); glint(out, [0.92, 0.56, -1.47], f, 2430, 18, 0.7); return out; },
   dof: (f, C) => ({ focus: f < 2440 ? dist(C.pos, [0.92, 0.55, -1.47]) : dist(C.pos, [0.5, 0.9, -1.7]), cinf: f < 2440 ? 9 : 6 }) });
 
 // ---------- assemble ----------
