@@ -153,7 +153,7 @@ function applyLight(L, focus) {
   fill.color.set(L.fill || '#ffffff'); fill.intensity = L.fillI ?? 0.45;
   scene.fog.color.set(L.fog); scene.fog.near = L.fogNear; scene.fog.far = L.fogFar;
   skyU.top.value.set(L.skyTop); skyU.hor.value.set(L.skyHor); skyU.sunCol.value.set(L.sunDisc || '#000'); skyU.sunSize.value = L.sunSize || 0;
-  inkU.sat.value = L.sat ?? 1.08; inkU.gain.value.set(L.gain || '#ffffff'); inkU.lift.value.set(L.lift || '#000000'); inkU.vig.value = L.vig ?? 0.2;
+  inkU.sat.value = (L.sat ?? 1.08) * 1.22; inkU.gain.value.set(L.gain || '#ffffff'); inkU.lift.value.set(L.lift || '#000000'); inkU.vig.value = L.vig ?? 0.2;
   const az = rx(L.az), el = rx(L.el); tmpV.set(Math.cos(el) * Math.cos(az), Math.sin(el), Math.cos(el) * Math.sin(az));
   skyU.sunDir.value.copy(tmpV); sun.position.copy(focus).addScaledVector(tmpV, 90); sun.target.position.copy(focus);
   fill.position.copy(focus).add(new THREE.Vector3(-tmpV.x, 0.6, -tmpV.z).multiplyScalar(50)); fill.target.position.copy(focus);
@@ -172,11 +172,13 @@ const swapForNd = (on) => {
 function renderState(st, f, target) {
   const SET = SETS[st.set], O = SET.origin, add3 = (p) => [p[0] + O[0], p[1] + O[1], p[2] + O[2]];
   for (const [k, s] of Object.entries(SETS)) s.group.visible = k === st.set || SET.uses.includes(k);
+  if (Q.get('nodesert')) SETS.desert.group.visible = false;
   const C = st.cam, pos = add3(C.pos), look = add3(C.look);
   camera.position.set(...pos); camera.up.set(0, 1, 0); camera.lookAt(...look); camera.rotateZ(rx(C.roll || 0));
   camera.fov = C.fov; camera.updateProjectionMatrix(); camera.updateMatrixWorld();
   applyLight(st.light, new THREE.Vector3(...add3(C.shadowAt || C.look)));
   SET.update(f, st.world || {}, camera); for (const u of SET.uses) SETS[u].update(f, st.world || {}, camera);
+  if (Q.get('nofx')) st = { ...st, fx: [] }; if (Q.get('noact')) st = { ...st, actors: [] };
   fxPool.place((st.fx || []).map((x) => ({ ...x, p: add3(x.p) })), camera);
   drawActors((st.actors || []).map((a) => ({ ...a, x: a.x + O[0], y: a.y + O[1], z: a.z + O[2], ground: (a.ground ?? 0) + O[1] })), camera);
   sky.position.copy(camera.position);

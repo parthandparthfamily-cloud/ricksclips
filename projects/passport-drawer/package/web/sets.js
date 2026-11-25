@@ -2,22 +2,22 @@
 // Story coordinates are LOCAL to a set (the engine adds `origin`). The shared 'desert' (ground, dunes, skyline, cranes)
 // is in world coordinates and is shown with every desert-side set, so the city is one consistent place.
 export function buildSets(THREE, scene, K, T) {
-  const { add, grp, tbox, box, cyl, sph, toon, texM, basic, sign, palm, swayPalm, planter, suitcase, bench, clock, tickClock, plant, fanBlades, car, tower, chicken, goat, rng, tex } = K;
+  const { add, grp, tbox, box, cyl, sph, toon, texM, basic, sign, palm, swayPalm, planter, suitcase, bench, clock, tickClock, plant, fanBlades, car, tower, chicken, goat, rng, tex, flock, cone, barrel, tyre } = K;
   const SETS = {};
   const mk = (key, origin, uses = []) => { const g = new THREE.Group(); g.position.set(...origin); scene.add(g); SETS[key] = { group: g, origin, uses, update: () => {} }; return g; };
   const glassMat = (col = '#bfe3f2', op = 0.22) => new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: op, depthWrite: false, side: THREE.DoubleSide });
   const glass = (parent, geo, x, y, z, o = {}) => { const m = add(parent, geo, glassMat(o.col, o.op), x, y, z, { cast: false, ...o }); m.userData.ndSkip = true; m.renderOrder = 3; return m; };
   const M = {
-    sand: texM(K.sand(21), 300, 300), sandPad: texM(K.sand(23, '#e3bf80'), 30, 30), asphalt: texM(K.concrete(5, [220, 8, 34]), 4, 60), apron: texM(K.concrete(6, [210, 6, 72]), 30, 30),
-    tiles: texM(K.tiles('#efe9df', '#dcd4c6', 4), 6, 12), marble: texM(K.tiles('#f3ede2', '#e6d9c2', 2, '#c9b998'), 7, 12),
-    plasterW: texM(K.plaster(8, 40), 3, 2), plasterG: texM(K.plaster(18, 150), 2, 1), white: toon('#f4f4f2'), steel: toon('#9aa3ab'), dark: toon('#2b2f3a'),
-    wood: texM(K.wood(31), 1, 1), woodD: texM(K.wood(32, 22, 30), 1, 1), carpet: texM(K.carpet('#7a2e3a', '#e2b85c'), 5, 4), wallpaper: texM(K.wallpaper('#d6e8d0', '#a7ccaa'), 4, 2),
+    sand: texM(K.sand(21, '#ead8b2'), 300, 300), sandPad: texM(K.sand(23, '#e6d4ae'), 30, 30), asphalt: texM(K.concrete(5, [220, 8, 34]), 4, 60), apron: texM(K.concrete(6, [210, 6, 72]), 30, 30),
+    tiles: texM(K.tiles('#efe9df', '#dcd4c6', 4), 1, 1), marble: texM(K.tiles('#f3ede2', '#e6d9c2', 2, '#c9b998'), 1, 1),
+    plasterW: texM(K.plaster(8, 40), 1, 1), plasterG: texM(K.plaster(18, 150), 2, 1), white: toon('#f4f4f2'), steel: toon('#9aa3ab'), dark: toon('#2b2f3a'),
+    wood: texM(K.wood(31), 1, 1), woodD: texM(K.wood(32, 22, 30), 1, 1), carpet: texM(K.carpet('#7a2e3a', '#e2b85c'), 1, 1), wallpaper: texM(K.wallpaper('#d6e8d0', '#a7ccaa'), 1, 1),
     corr: texM(K.corrugated('#d8dee4'), 6, 1), dirt: texM(K.dirt(7), 20, 20), grass: texM(K.grass(6), 60, 60),
   };
 
   // ======================= DESERT (shared, world coords) =======================
   const D = mk('desert', [0, 0, 0]);
-  add(D, new THREE.PlaneGeometry(5000, 5000), M.sand, 0, 0, 0, { rx: -Math.PI / 2, cast: false });
+  add(D, new THREE.PlaneGeometry(5000, 5000, 80, 80), M.sand, 0, -0.25, 0, { rx: -Math.PI / 2, cast: false });
   { const r = rng(70);
     for (let i = 0; i < 60; i++) { const a = r() * Math.PI * 2, d = 520 + r() * 1300, x = Math.cos(a) * d, z = 300 + Math.sin(a) * d; if (z < -400 && Math.abs(x) < 500) continue;
       add(D, sph(1, 20, 10), toon(i % 2 ? '#e6c184' : '#dcb274'), x, -4, z, { cast: false, s: [40 + r() * 60, 10 + r() * 16, 30 + r() * 40] }); }
@@ -30,9 +30,10 @@ export function buildSets(THREE, scene, K, T) {
     const cranes = [];
     for (const [x, z, h] of [[-200, -620, 90], [120, -640, 110], [-20, -600, 70], [260, -700, 120]]) { const c = grp(D, x, 0, z); add(c, tbox(2, h, 2, 4), toon('#f2c14e'), 0, h / 2, 0, { cast: false }); const jib = grp(c, 0, h, 0); add(jib, tbox(46, 1.6, 1.6, 4), toon('#f2c14e'), 12, 0, 0, { cast: false }); add(jib, tbox(6, 4, 3, 2), toon('#9aa3ab'), -9, -1, 0, { cast: false }); add(jib, cyl(0.15, 0.15, 20, 4), toon('#333'), 26, -10, 0, { cast: false }); cranes.push(jib); }
     // road to the city
-    add(D, new THREE.PlaneGeometry(14, 1400), texM(K.concrete(8, [220, 6, 36]), 2, 100), 120, 0.03, -300, { rx: -Math.PI / 2, ry: 0, cast: false });
+    add(D, new THREE.PlaneGeometry(14, 1400, 1, 100), texM(K.concrete(8, [220, 6, 36]), 2, 100), 120, 0.03, -300, { rx: -Math.PI / 2, ry: 0, cast: false });
     for (let i = 0; i < 40; i++) palm(D, 120 + (i % 2 ? 11 : -11), -40 - i * 28, 8 + r() * 3, i + 3);
-    SETS.desert.update = (f) => { cranes.forEach((j, i) => (j.rotation.y = 0.4 * Math.sin(f * 0.004 + i * 2) + i)); };
+    const fl1 = flock(D, 7, 260, 22, -170, 30, 5, '#f4f4f2'), fl2 = flock(D, 6, 0, 40, 100, 60, 6, '#f4f4f2'), fl3 = flock(D, 5, -60, 50, -560, 50, 7, '#e8e4dc'), fl4 = flock(D, 5, 80, 100, -540, 45, 8, '#f4f4f2');
+    SETS.desert.update = (f) => { cranes.forEach((j, i) => (j.rotation.y = 0.4 * Math.sin(f * 0.004 + i * 2) + i)); fl1(f); fl2(f); fl3(f); fl4(f); };
   }
 
   // shared plane builder (nose toward -z)
@@ -52,10 +53,10 @@ export function buildSets(THREE, scene, K, T) {
   // ======================= RUNWAY =======================
   { const G = mk('runway', [0, 0, 0], ['desert']);
     const rt = (() => { const c = document.createElement('canvas'); c.width = 256; c.height = 1024; const g = c.getContext('2d'); g.fillStyle = '#3b3f48'; g.fillRect(0, 0, 256, 1024); const r = rng(4); for (let i = 0; i < 500; i++) { g.fillStyle = `rgba(${r() > 0.5 ? 255 : 0},${r() > 0.5 ? 255 : 0},255,.05)`; g.fillRect(r() * 256, r() * 1024, 3, 3); } g.fillStyle = '#f4f4f0'; g.fillRect(122, 0, 12, 420); g.fillRect(8, 0, 6, 1024); g.fillRect(242, 0, 6, 1024); g.fillStyle = 'rgba(20,20,20,.35)'; for (let i = 0; i < 12; i++) g.fillRect(70 + r() * 110, r() * 1024, 4, 60 + r() * 80); return c; })();
-    add(G, new THREE.PlaneGeometry(44, 1200), toon('#ffffff', { map: tex(rt, 1, 24) }), 0, 0.03, 100, { rx: -Math.PI / 2, cast: false });
-    add(G, new THREE.PlaneGeometry(90, 1200), M.apron, -50, 0.02, 100, { rx: -Math.PI / 2, cast: false });
+    add(G, new THREE.PlaneGeometry(44, 1200, 4, 120), toon('#ffffff', { map: tex(rt, 1, 24) }), 0, 0.1, 100, { rx: -Math.PI / 2, cast: false });
+    add(G, new THREE.PlaneGeometry(90, 1200, 9, 120), M.apron, -50, 0.0, 100, { rx: -Math.PI / 2, cast: false });
     for (let z = -400; z < 700; z += 24) for (const s of [-1, 1]) add(G, tbox(0.3, 0.3, 0.3, 1), basic(s > 0 ? '#ffe066' : '#6fb6ff'), s * 23, 0.15, z, { cast: false });
-    for (let i = 0; i < 8; i++) for (const s of [-1, 1]) add(G, tbox(2.4, 0.02, 18, 1), toon('#f4f4f0'), s * (6 + i * 1.8) * 0.9, 0.04, 560, { cast: false });
+    for (let i = 0; i < 8; i++) for (const s of [-1, 1]) add(G, tbox(2.4, 0.02, 18, 1), toon('#f4f4f0'), s * (6 + i * 1.8) * 0.9, 0.12, 560, { cast: false });
     // terminal exterior + control tower
     const term = grp(G, -150, 0, 40); add(term, box(40, 14, 160), texM(K.towerGlass(195, 7, 8, 4), 6, 2), 0, 7, 0, { cast: false }); add(term, tbox(46, 1.2, 166, 4), toon('#f2f2ee'), 0, 14.6, 0, { cast: false });
     sign(term, 'DESERT CITY INTERNATIONAL', 20.4, 17, 0, 60, 5, { bg: '#ffffff', fg: '#1f6f8b', border: '#d6403a' }, Math.PI / 2);
@@ -91,7 +92,7 @@ export function buildSets(THREE, scene, K, T) {
   // ======================= TERMINAL (arrivals + departures) =======================
   { const G = mk('terminal', [-150, 0, 0], ['desert']);
     add(G, tbox(26, 0.1, 56, 4), M.tiles, -3, -0.03, -13);
-    add(G, new THREE.PlaneGeometry(140, 140), M.apron, 80, 0.01, -13, { rx: -Math.PI / 2, cast: false });
+    add(G, new THREE.PlaneGeometry(140, 140, 14, 14), M.apron, 80, -0.05, -13, { rx: -Math.PI / 2, cast: false });
     // glass wall facing the apron (+x)
     glass(G, new THREE.PlaneGeometry(56, 9.2), 10, 4.6, -13, { ry: Math.PI / 2 });
     for (let z = -41; z <= 15; z += 3) add(G, tbox(0.22, 9.2, 0.22, 1), toon('#cfd6de'), 10, 4.6, z, { cast: false });
@@ -128,6 +129,10 @@ export function buildSets(THREE, scene, K, T) {
     const palms = []; for (const [x, z] of [[6, -28], [6, -16], [6, -4], [6, 8], [-13, -32], [-13, 4]]) { planter(G, x, z, 0.9, '#d9d2c4'); palms.push(palm(G, x, z, 5.5, x * 3 + z, 0.7)); }
     bench(G, -13, -6, Math.PI / 2, '#3f6fb0'); bench(G, -13, -10, Math.PI / 2, '#3f6fb0'); bench(G, 2, 2, 0, '#d6403a'); bench(G, 2, -20, 0, '#d6403a');
     for (const [x, z] of [[3, 6], [-12, 10]]) { add(G, cyl(0.25, 0.22, 0.8, 14), toon('#7a8a96'), x, 0.4, z); add(G, cyl(0.27, 0.27, 0.06, 14), toon('#2b2f3a'), x, 0.82, z); }
+    for (const [x, z, ry] of [[-9, 10, 0.4], [-8.3, 10.6, 0.5], [4.5, -10, -0.3]]) { const tr = grp(G, x, 0, z, ry); add(tr, tbox(0.6, 0.05, 1.0, 1), M.steel, 0, 0.3, 0); add(tr, tbox(0.6, 0.9, 0.04, 1), M.steel, 0, 0.75, -0.5); for (const sx of [-0.25, 0.25]) add(tr, cyl(0.07, 0.07, 0.05, 10), toon('#22242a'), sx, 0.08, 0.4, { rz: Math.PI / 2 }); suitcase(tr, 0, 0.33, 0.05, '#8a5cc2', 0.8); }
+    const wf = grp(G, 1.5, 0, 9.8, 0.5); for (const s of [-1, 1]) add(wf, tbox(0.5, 0.75, 0.03, 1), toon('#ffd23f'), 0, 0.38, s * 0.12, { rx: s * 0.3 }); sign(wf, ['WET', 'FLOOR'], 0, 0.45, 0.25, 0.4, 0.3, { bg: '#ffd23f', fg: '#1d2330', border: null, depth: 0.01 });
+    for (const [x, z] of [[-14.8, -18], [-14.8, 12], [8.6, 13.6]]) plant(G, x, 0, z, 2.4);
+    for (const z of [-26, -12]) { const sc = grp(G, -15.9, 3.2, z, Math.PI / 2); add(sc, tbox(1.6, 0.95, 0.08, 1), toon('#1d2330'), 0, 0, 0); add(sc, new THREE.PlaneGeometry(1.45, 0.8), basic('#7cc4ff'), 0, 0, 0.045, { cast: false }); }
     const kiosk = grp(G, -6, 0, 6); add(kiosk, tbox(1.6, 1.1, 0.8, 1), toon('#f2c14e'), 0, 0.55, 0); sign(kiosk, 'INFO', 0, 2.2, 0, 1.2, 0.5, { bg: '#1f6f8b' }); add(kiosk, cyl(0.04, 0.04, 1.2, 6), M.steel, 0, 1.6, 0);
     // departures zone: passport control booths + queue
     sign(G, 'DEPARTURES', -3, 6.6, -40.9, 7, 1.4, { bg: '#1d2a3a', fg: '#ffd23f', border: '#ffd23f' });
@@ -246,7 +251,7 @@ export function buildSets(THREE, scene, K, T) {
 
   // ======================= YARD: labour camp + dorm + construction site =======================
   { const G = mk('yard', [260, 0, -180], ['desert']);
-    add(G, new THREE.PlaneGeometry(140, 160), M.sandPad, 0, 0.02, -10, { rx: -Math.PI / 2, cast: false });
+    add(G, new THREE.PlaneGeometry(140, 160, 28, 32), M.sandPad, 0, 0.0, -10, { rx: -Math.PI / 2, cast: false });
     // chain-link fence (alpha texture, never inked)
     const fM = new THREE.MeshToonMaterial({ gradientMap: undefined, map: tex(K.fence(), 30, 1), transparent: true, alphaTest: 0.3, side: THREE.DoubleSide, color: '#c9d0d6' });
     const fenceRun = (x0, z0, x1, z1) => { const L = Math.hypot(x1 - x0, z1 - z0), m = add(G, new THREE.PlaneGeometry(L, 2.6), fM, (x0 + x1) / 2, 1.3, (z0 + z1) / 2, { ry: -Math.atan2(z1 - z0, x1 - x0), cast: false }); m.userData.ndSkip = true; for (let i = 0; i <= L; i += 3) add(G, cyl(0.05, 0.05, 2.8, 6), M.steel, x0 + (x1 - x0) * i / L, 1.4, z0 + (z1 - z0) * i / L); };
@@ -275,6 +280,9 @@ export function buildSets(THREE, scene, K, T) {
       bunks.push({ g: b, beds }); }
     // the empty bunk above the hero (east side, z=1.7): its blanket, pillow, bag can vanish
     const heroBunk = bunks[5]; const bag = suitcase(heroBunk.g, 0.2, 1.88, 0.5, '#3f6fb0', 0.6); bag.rotation.z = Math.PI / 2;
+    for (const [x, z] of [[-2.2, -3.2], [-2.3, -0.4], [-2.2, 2.4], [2.2, -3.2], [2.3, -0.3], [2.1, 2.3]]) { add(dorm, tbox(0.12, 0.08, 0.26, 1), toon('#2b1f1c'), x, 0.16, z); add(dorm, tbox(0.12, 0.08, 0.26, 1), toon('#2b1f1c'), x + 0.16, 0.16, z + 0.05); }
+    for (const [x, z, c] of [[-3.1, 3.1, '#3f6fb0'], [3.1, -2.7, '#d6403a'], [-3.1, -2.4, '#f2c14e']]) add(dorm, cyl(0.16, 0.13, 0.3, 14), toon(c), x, 0.27, z);
+    for (const [x, z, c] of [[-2.8, 0.3, '#8a5cc2'], [2.8, 3.0, '#2f6a3a'], [-2.9, -2.6, '#c45a3a']]) suitcase(dorm, x, 0.12, z, c, 0.7).rotation.x = Math.PI / 2;
     // lockers, calendar, tally marks, sink, fans, laundry line, clock
     for (let i = 0; i < 5; i++) { const l = grp(dorm, -2.6 + i * 0.7, 0, -5.3); add(l, tbox(0.66, 1.9, 0.45, 1), toon(['#5a9ec4', '#8fae5a', '#e07a3a', '#5a9ec4', '#c45a8a'][i]), 0, 0.95, 0); for (let j = 0; j < 3; j++) add(l, tbox(0.4, 0.03, 0.02, 1), toon('#2b2f3a'), 0, 1.6 + j * 0.06, 0.23); }
     const calT = (m) => K.signTex([`MONTH ${m}`, 'PAYDAY ?'], { bg: '#ffffff', fg: m === 1 ? '#1d2a3a' : '#c0392b', border: '#c0392b', w: 256, h: 300 });
@@ -321,6 +329,13 @@ export function buildSets(THREE, scene, K, T) {
     for (const [x, z] of [[20, -26], [26, -24], [8, -32]]) { const pal = grp(G, x, 0, z); add(pal, tbox(1.4, 0.15, 1.1, 1), M.wood, 0, 0.08, 0); for (let i = 0; i < 12; i++) add(pal, tbox(0.42, 0.22, 0.5, 1), toon(i % 3 ? '#c45a3a' : '#b04a30'), -0.45 + (i % 3) * 0.45, 0.28 + Math.floor(i / 6) * 0.24, -0.27 + Math.floor((i % 6) / 3) * 0.54); }
     const mix = grp(G, 12, 0, -18); add(mix, tbox(1.6, 0.6, 1.2, 1), toon('#d6403a'), 0, 0.6, 0); const drum = grp(mix, 0, 1.5, 0); add(drum, cyl(0.7, 0.45, 1.6, 16), toon('#f2762e'), 0, 0, 0, { rz: 1.1 }); for (let i = 0; i < 4; i++) add(drum, tbox(0.06, 1.5, 0.08, 1), toon('#b04a20'), 0, 0, 0.7, { rz: 1.1 }).rotation.y = i * 1.57; for (const s of [-1, 1]) add(mix, cyl(0.3, 0.3, 0.15, 12), toon('#22242a'), s * 0.6, 0.3, 0.65, { rx: Math.PI / 2 });
     const wb = grp(G, 18, 0, -20); add(wb, tbox(0.7, 0.3, 1.0, 1), toon('#3f8a4a'), 0, 0.5, 0); add(wb, cyl(0.2, 0.2, 0.08, 12), toon('#222'), 0, 0.2, 0.55, { rz: Math.PI / 2 });
+    for (const [x, z] of [[11, -16], [13.5, -16.5], [16, -17], [22, -21], [8, 6], [9, 9.5], [-3, 30], [3, 30]]) cone(G, x, z);
+    for (const [x, z, c] of [[-38, 4, '#3f6fb0'], [-38.7, 4.6, '#d6403a'], [-37.8, 5.5, '#3f6fb0'], [26, -14, '#2f6a3a'], [27, -14.8, '#3f6fb0'], [13, 20, '#d6403a']]) barrel(G, x, z, c);
+    for (const [x, y, z] of [[-36, 0.14, 12], [-36.2, 0.42, 12.1], [-35.4, 0.14, 13.1], [24, 0.14, -12]]) tyre(G, x, y, z);
+    for (let i = 0; i < 8; i++) add(G, cyl(0.03, 0.03, 6, 5), toon('#8a4a2a'), 28 + i * 0.12, 0.08 + (i % 3) * 0.06, -16, { rz: Math.PI / 2, ry: 0.1 });
+    for (const [x, z] of [[-30, 34], [-20, 36], [30, 30], [-44, -10]]) { const c = grp(G, x, 0, z); add(c, tbox(1.2, 0.8, 1.0, 1), M.wood, 0, 0.4, 0); add(c, tbox(1.0, 0.6, 0.9, 1), M.woodD, 0.2, 1.1, 0, { ry: 0.3 }); }
+    const dog = grp(G, 1.5, 0, 26, 0.4); add(dog, sph(0.28, 12, 10), toon('#c9a070'), 0, 0.2, 0, { s: [1.6, 0.7, 0.9] }); const dh = grp(dog, 0.45, 0.22, 0); add(dh, sph(0.15, 10, 8), toon('#c9a070'), 0, 0, 0, { s: [1.2, 0.9, 1] }); for (const s2 of [-1, 1]) add(dh, sph(0.06, 8, 6), toon('#8a6a4a'), -0.02, 0.1, s2 * 0.1, { s: [1, 1.6, 0.6] }); add(dh, sph(0.03, 6, 4), toon('#222'), 0.18, 0.0, 0); const tail = grp(dog, -0.42, 0.25, 0); add(tail, cyl(0.03, 0.02, 0.3, 6), toon('#c9a070'), 0, 0.15, 0, { rz: 0.6 });
+    const crows = []; for (let i = 0; i < 5; i++) { const b = K.bird(G, '#2b2b33'); b.position.set(-48 + i * 9, 2.7, 50); b.scale.setScalar(1.4); crows.push(b); }
     // police car (drives in for 'absconding') with blinking bar
     const cop = car(G, 0, 70, Math.PI, '#f2f4f7', true);
     const palmsY = []; for (const [x, z] of [[-6, 56], [8, 60], [-14, 58]]) palmsY.push(palm(G, x, z, 7, x * z));
@@ -333,15 +348,16 @@ export function buildSets(THREE, scene, K, T) {
       shutter.scale.y = Math.max(0.05, Math.min(1, w.shutter ?? 0)); poster.scale.setScalar(Math.max(0.001, Math.min(1, w.poster ?? 0))); poster.rotation.z = (1 - Math.min(1, w.poster ?? 0)) * 0.6;
       jib.rotation.y = 0.5 + 0.25 * Math.sin(f * 0.006) + (w.jib ?? 0); const sw = 0.06 * Math.sin(f * 0.07); load.position.set(Math.sin(sw) * 20, -20, 0); cable.scale.y = 20; cable.position.y = -10; cable.rotation.z = -sw;
       drum.rotation.x = f * 0.08; tickClock(remClk, f, w.clockSpeed ?? 30); const cp = w.cop; cop.visible = !!cp; if (cp) { cop.position.set(cp[0], 0, cp[1]); cop.rotation.y = cp[2] ?? Math.PI; const on = Math.floor(f / 4) % 2; cop.userData.lights[0].material.color.set(on ? '#ff3a3a' : '#5a1010'); cop.userData.lights[1].material.color.set(on ? '#10205a' : '#3a7aff'); }
-      palmsY.forEach((p) => swayPalm(p, f, 1.4));
+      palmsY.forEach((p) => swayPalm(p, f, 1.4)); dh.rotation.z = 0.15 * Math.sin(f * 0.05); tail.rotation.x = 0.6 * Math.sin(f * 0.4);
+      crows.forEach((b, i) => { const hop = Math.max(0, Math.sin(f * 0.07 + i * 2)); b.position.y = 2.7 + hop * 0.15; b.rotation.y = Math.PI / 2 + 0.6 * Math.sin(f * 0.02 + i); K.flap(b, f, hop > 0.5 ? 1 : 0); });
     };
     SETS.yard.dorm = [DX, 0, 0];
   }
 
   // ======================= VILLAGE (back home) =======================
   { const G = mk('village', [5000, 0, 5000]);
-    add(G, new THREE.PlaneGeometry(900, 900), M.grass, 0, 0, 0, { rx: -Math.PI / 2, cast: false });
-    add(G, new THREE.PlaneGeometry(8, 200), texM(K.dirt(12), 2, 40), 6, 0.02, 0, { rx: -Math.PI / 2, cast: false });
+    add(G, new THREE.PlaneGeometry(900, 900, 60, 60), M.grass, 0, -0.05, 0, { rx: -Math.PI / 2, cast: false });
+    add(G, new THREE.PlaneGeometry(8, 200, 2, 50), texM(K.dirt(12), 2, 40), 6, 0.0, 0, { rx: -Math.PI / 2, cast: false });
     const r = rng(77);
     for (let i = 0; i < 26; i++) { const a = r() * Math.PI * 2, d = 160 + r() * 260; add(G, sph(1, 20, 10), toon(i % 2 ? '#7aa64c' : '#86ad60'), Math.cos(a) * d, -8, Math.sin(a) * d, { cast: false, s: [40 + r() * 50, 22 + r() * 30, 40 + r() * 40] }); }
     // mother's house: 2 storeys, flat roof terrace with parapet
@@ -358,19 +374,22 @@ export function buildSets(THREE, scene, K, T) {
     const ag = grp(G, 24, 0, 6, -Math.PI / 2); add(ag, tbox(6, 3.6, 4, 2), texM(K.plaster(91, 210), 2, 2), 0, 1.8, -2); add(ag, tbox(6.4, 0.12, 1.8, 1), K.texM(K.stripes('#d6403a', '#ffffff', 12), 1, 1), 0, 3.0, 0.8, { rx: 0.3 });
     sign(ag, ['DREAM JOBS ABROAD', 'FAST VISA!'], 0, 3.7, 0.05, 5, 0.9, { bg: '#f2c14e', fg: '#7a2e3a', border: '#d6403a' });
     add(ag, tbox(2.4, 0.9, 1, 1), M.woodD, 0.4, 0.45, -0.4); add(ag, tbox(2.5, 0.06, 1.1, 1), M.wood, 0.4, 0.92, -0.4); const ledger = add(ag, tbox(0.5, 0.06, 0.36, 1), toon('#ffffff', { map: tex(K.signTex(['YOU OWE', '$ $ $ $'], { bg: '#fbf8ef', fg: '#c0392b', border: '#1d2a3a', w: 256, h: 186 })) }), 0.2, 0.98, -0.3);
-    const tapeMat = toon('#fbf8ef', { side: THREE.DoubleSide, map: tex((() => { const c = document.createElement('canvas'); c.width = 64; c.height = 512; const g = c.getContext('2d'); g.fillStyle = '#fbf8ef'; g.fillRect(0, 0, 64, 512); g.fillStyle = '#c0392b'; g.font = '20px Lilita'; for (let i = 0; i < 20; i++) g.fillText(i % 3 ? '-$' + (100 + i * 37) : 'FEE', 6, 24 + i * 25); return c; })(), 1, 8) }); const tape = add(ag, new THREE.PlaneGeometry(0.22, 1), tapeMat, 1.0, 0.02, 0.3, { rx: -Math.PI / 2, cast: false }); const hang = add(ag, new THREE.PlaneGeometry(0.22, 0.95), tapeMat, 1.0, 0.48, 0.12, { cast: false }); const tapeTop = add(ag, new THREE.PlaneGeometry(0.22, 0.5), tapeMat, 1.0, 0.955, -0.13, { rx: -Math.PI / 2, cast: false });
+    const tapeMat = toon('#fbf8ef', { side: THREE.DoubleSide, map: tex((() => { const c = document.createElement('canvas'); c.width = 64; c.height = 512; const g = c.getContext('2d'); g.fillStyle = '#fbf8ef'; g.fillRect(0, 0, 64, 512); g.fillStyle = '#c0392b'; g.font = '20px Lilita'; for (let i = 0; i < 20; i++) g.fillText(i % 3 ? '-$' + (100 + i * 37) : 'FEE', 6, 24 + i * 25); return c; })(), 1, 8) }); const tape = add(ag, new THREE.PlaneGeometry(0.22, 1, 1, 20), tapeMat, 1.0, 0.05, 0.3, { rx: -Math.PI / 2, cast: false }); const hang = add(ag, new THREE.PlaneGeometry(0.22, 0.95), tapeMat, 1.0, 0.48, 0.12, { cast: false }); const tapeTop = add(ag, new THREE.PlaneGeometry(0.22, 0.5), tapeMat, 1.0, 0.955, -0.13, { rx: -Math.PI / 2, cast: false });
     sign(ag, ['WORK IN', 'SHINY CITY'], -2.2, 1.8, -0.01, 1.2, 1.5, { bg: '#1f8f9a', fg: '#fff', border: '#f2c14e' });
     // washing lines, trees, phone mast, kite, animals
     const cloth = []; for (let i = 0; i < 7; i++) { const s = grp(G, -6 + i * 0.9, 2.2, 6); add(s, tbox(0.55, 0.7, 0.02, 1), toon(['#d2337a', '#f2c14e', '#2fa59a', '#ffffff', '#e07a3a', '#3f6fb0', '#8fae5a'][i]), 0, -0.35, 0); cloth.push(s); } for (const x of [-6.6, 0]) add(G, cyl(0.05, 0.05, 2.3, 6), M.wood, x, 1.15, 6);
     for (const [x, z, s] of [[-24, 0, 1.2], [26, -14, 1.4], [-30, 24, 1], [32, 26, 1.3], [-8, -16, 1.1]]) { const t = grp(G, x, 0, z); add(t, cyl(0.3 * s, 0.4 * s, 3 * s, 8), toon('#6a4a32'), 0, 1.5 * s, 0); for (let k2 = 0; k2 < 4; k2++) add(t, sph(1.6 * s, 14, 10), toon(k2 % 2 ? '#4f8a3c' : '#5f9a4a'), Math.cos(k2 * 1.6) * s, 3.4 * s + (k2 % 2) * 0.6 * s, Math.sin(k2 * 1.6) * s); }
     const mast = grp(G, -40, 0, -50); for (let y = 0; y < 30; y += 3) add(mast, tbox(1.2 - y * 0.02, 3, 1.2 - y * 0.02, 1), toon(Math.floor(y / 3) % 2 ? '#d6403a' : '#f4f4f2'), 0, y + 1.5, 0);
     const kite = grp(G, -6, 18, -8); add(kite, new THREE.OctahedronGeometry(0.9, 0), toon('#d2337a'), 0, 0, 0, { s: [0.8, 1.1, 0.12] }); for (let i = 0; i < 6; i++) add(kite, tbox(0.18, 0.12, 0.05, 1), toon(['#f2c14e', '#2fa59a'][i % 2]), 0.1 * i, -1.1 - i * 0.4, 0);
+const bike = grp(G, 9.2, 0, 2.5, 0.3); for (const x of [-0.5, 0.5]) add(bike, new THREE.TorusGeometry(0.32, 0.03, 6, 20), toon('#22242a'), x, 0.34, 0); add(bike, tbox(1.0, 0.04, 0.04, 1), toon('#d6403a'), 0, 0.55, 0, { rz: 0.1 }); add(bike, tbox(0.04, 0.5, 0.04, 1), toon('#d6403a'), -0.1, 0.5, 0, { rz: 0.3 }); add(bike, tbox(0.2, 0.05, 0.1, 1), toon('#2b2f3a'), -0.2, 0.78, 0);
+    for (const [x, z, c] of [[3.9, 3.4, '#c8643a'], [4.4, 3.6, '#b04a30'], [-3.8, 3.4, '#c8643a'], [12, 3.4, '#c8643a']]) { add(G, cyl(0.25, 0.18, 0.45, 14), toon(c), x, 0.22, z); add(G, sph(0.25, 10, 8), toon('#5f9a4a'), x, 0.55, z); }
+    bench(G, 10.5, 9, Math.PI, '#2f8c92'); const vf = flock(G, 6, 0, 22, 0, 26, 12, '#f4f4f2');
     const chick = [chicken(G, 3, 5.5), chicken(G, 4.2, 6.8, '#c87a3a'), chicken(G, 1.5, 7.5), chicken(G, 8, 3, '#2b2b2b')]; const gt = goat(G, -3, 9);
     SETS.village.update = (f, w) => {
       cloth.forEach((c, i) => (c.rotation.x = 0.3 + 0.25 * Math.sin(f * 0.13 + i))); kite.position.set(-6 + 1.5 * Math.sin(f * 0.02), 18 + 1.2 * Math.sin(f * 0.033), -8); kite.rotation.z = 0.3 * Math.sin(f * 0.05);
       chick.forEach((c, i) => { const p = Math.max(0, Math.sin(f * 0.25 + i * 2)); c.userData.body.rotation.z = -p * 0.6; c.position.x += 0; c.rotation.y = i + 0.4 * Math.sin(f * 0.02 + i); });
-      gt.userData.head.rotation.z = 0.25 * Math.sin(f * 0.08); gt.rotation.y = 0.3 * Math.sin(f * 0.01);
-      const on = (w.tape ?? 0) > 0.01; tape.visible = hang.visible = tapeTop.visible = on; const L = 0.2 + (w.tape ?? 0) * 19; tape.scale.set(1, L, 1); tape.position.set(1.0, 0.02, 0.12 + L / 2); tape.material.map.repeat.set(1, L / 1.2);
+      gt.userData.head.rotation.z = 0.25 * Math.sin(f * 0.08); vf(f); gt.rotation.y = 0.3 * Math.sin(f * 0.01);
+      const on = (w.tape ?? 0) > 0.01; tape.visible = hang.visible = tapeTop.visible = on; const L = 0.2 + (w.tape ?? 0) * 19; tape.scale.set(1, L, 1); tape.position.set(1.0, 0.05, 0.12 + L / 2); tape.material.map.repeat.set(1, L / 1.2);
     };
   }
 
