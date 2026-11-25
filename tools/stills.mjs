@@ -13,5 +13,5 @@ await pg.waitForFunction(() => window.ready || window.err, null, { timeout: 3000
 if (await pg.evaluate(() => window.err)) { console.log('page error', await pg.evaluate(() => window.err)); process.exit(1); }
 const t0 = Date.now();
 for (const f of frames) { const out = path.join(outdir, `f${String(f).padStart(4, '0')}.jpg`); if (process.env.RESUME && fs.existsSync(out)) continue;
-  const d = await pg.evaluate((f) => { window.renderFrame(f); return document.getElementById('c').toDataURL('image/jpeg', 0.9); }, f); fs.writeFileSync(out, Buffer.from(d.split(',')[1], 'base64')); }
+  const d = await pg.evaluate(([f, ql]) => { window.renderFrame(f); return document.getElementById('c').toDataURL('image/jpeg', ql); }, [f, +(process.env.QUAL || 0.9)]); fs.writeFileSync(out, Buffer.from(d.split(',')[1], 'base64')); }
 console.log(`done ${frames.length} frames, ${((Date.now() - t0) / frames.length / 1000).toFixed(2)} s/frame`); await b.close(); srv.close();

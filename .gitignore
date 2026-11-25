@@ -7,3 +7,5 @@ out/
 *.mp3
 *.mp4
 __pycache__/
+projects/*/package/render_*.log
+projects/*/Rendered/
