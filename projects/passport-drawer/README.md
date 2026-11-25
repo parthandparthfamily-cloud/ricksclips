@@ -3,6 +3,11 @@
 81.9 s, 2458 frames @ 30 fps, 1080x1920. Voice: the provided voiceover (not trimmed; word timing from the provided script.json).
 No music or SFX on this one (your call). The mix is the voice alone, compressed ~3:1 and mastered to -14 LUFS / -2 dBTP.
 
+## Render in the cloud (no GPU needed)
+Run `bash render_cloud.sh`: 4 headless workers render frames 0–2457 into `package/frames/` (resumable: run it again if it stops),
+then it adds the face glow, burns in captions, muxes `mix.wav` and writes `Rendered/passport_drawer_vN.mp4` (never overwrites).
+v1 was rendered this way: 1080x1920, 2458 frames, 81.93 s, -14.0 LUFS.
+
 ## Render on the PC
 1. Copy `package/` to `<Projects>\PassportDrawer\Claude\` (keep `<Projects>\PassportDrawer\Raw` and `Rendered` beside it).
 2. Double-click `RENDER.bat`. It installs Playwright once, renders frames 0–2457 on the GPU (Edge, falling back to Brave),
