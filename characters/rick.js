@@ -161,7 +161,7 @@ const PROPS = {
 };
 
 // ---------- the character ----------
-// o: { kid, top, pants, shoes, outfit, tie, shirt, trim, hat, hatCol, band, hair, hairStyle, glasses, beard, moustache, goatee, backpack, sash, print, patch, laurel }
+// o: { gloves (hand colour, e.g. "#ffffff" for white gloves), kid, top, pants, shoes, outfit, tie, shirt, trim, hat, hatCol, band, hair, hairStyle, glasses, beard, moustache, goatee, backpack, sash, print, patch, laurel }
 // opts: { pose: "stand"|"sit", expr, look, L, R, propL, propR, lean, headTilt, flip }
 const rickBody = (g, o, opts = {}) => {
   const { pose = "stand", expr = "neutral", look = 0, L = "hang", R = "hang", propL = null, propR = null, headTilt = 0, weight = 1 } = opts;
@@ -202,7 +202,7 @@ const rickBody = (g, o, opts = {}) => {
     const [a, k, h] = armPts(s, pose0), pose = pname(pose0);
     limbStroke(g, qc(a, k, h, 10), limb, limb * 0.9);
     if (prop && PROPS[prop] && prop !== "pipe") PROPS[prop](g, h[0], h[1]);
-    ell(g, h[0], h[1], 10.5 * weight, 10.5 * weight, FC, 0);
+    ell(g, h[0], h[1], (o.gloves ? 12.5 : 10.5) * weight, (o.gloves ? 12.5 : 10.5) * weight, o.gloves ?? FC, o.gloves ? 4.5 : 0);
     if (pose === "point") line(g, [[h[0], h[1]], [h[0] + s * 22, h[1] - 3]], 7, FC);
     if (pose === "thumb") line(g, [[h[0], h[1]], [h[0] + s * 4, h[1] - 22]], 7, FC);
   };

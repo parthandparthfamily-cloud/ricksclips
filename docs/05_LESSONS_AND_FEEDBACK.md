@@ -52,3 +52,17 @@ Every mistake that has already happened once, so it never happens twice.
 - **Skipping the gate.** "Go" means run the checklist first, then ship.
 - **EEVEE "Shadow buffer full".** Too many shadow-casting lamps on a 6 GB GPU. Raise `shadow_pool_size`, halve `shadow_resolution_scale`,
   and let only key lights cast shadows.
+
+## Night Movers (Nov 2026) — new corrections
+- **Framing gate in code.** 9:16 interiors over-zoom easily. `projects/night-movers/check_framing.mjs` projects every actor's face on every
+  frame and lists crops and faces wider than 45% of the frame. Run it before any stills; fix until only entering/exiting walkers remain.
+- A world `update()` that early-returns when its set is hidden leaves props in a stale state on the first frame of a new shot
+  (boxes showed before the packing even started). Update every set every frame; it's cheap.
+- Painted textures with transparent corners (a round clock face on a square plane) render black unless the material has `alphaTest`;
+  also mark them `noink` or the ink pass outlines the invisible square.
+- A seated card behind a solid box (futon, desk) hides its own legs and reads as "stuck in the furniture". Seat it on the front edge.
+- Brightness drifts low with night sets: measure the mean of a mid-shot contact sheet (target ≈ 0.64) and lift the WORLD with a
+  per-light exposure in the ink pass; characters are excluded from the grade so faces stay pure white.
+- Cloud SFX/music: many game repos on GitHub store audio in Git LFS — raw downloads return pointer files. Fetch through
+  `media.githubusercontent.com/media/<owner>/<repo>/<branch>/<path>`. Check the size or `file` before mixing.
+- Ricks-style SFX density is easy to overshoot when every move gets a whoosh: count hits per 10 s in the mix script and prune.

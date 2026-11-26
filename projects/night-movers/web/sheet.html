@@ -1,0 +1,18 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#e9c25e}canvas{display:block}</style></head>
+<body><canvas id="c" width="2400" height="1500"></canvas>
+<script type="module">
+import * as T from './toon.js';
+import { C } from './castdefs.js';
+const g = document.getElementById('c').getContext('2d');
+g.fillStyle = '#e9c25e'; g.fillRect(0, 0, 2400, 1500);
+const list = [['you','smirk'],['youNew','grin'],['driver','smile'],['mover2','stern'],['mover3','sly'],['collector','angry'],['boss','angry'],['mom','smile'],['momGrey','nervous'],['dad','beam'],['neighbor','shock'],['landlady','smugsmile'],['foreman','grin'],['chef','laugh'],['reporter','neutral'],['cop','bored']];
+list.forEach(([k, e], i) => {
+  const x = 150 + (i % 8) * 295, y = 680 + Math.floor(i / 8) * 730;
+  g.save(); g.translate(x, y); g.scale(0.9, 0.9);
+  const props = { you: { R: 'hold', propR: 'phone' }, driver: { R: 'hold', propR: 'can' }, mover2: { R: 'holdUp', propR: 'box' }, mover3: { R: 'hold', propR: 'tape' }, collector: { R: 'point' }, boss: { R: 'point' }, momGrey: { R: 'holdUp', propR: 'flyer' }, foreman: { R: 'hold', propR: 'clipboard' }, chef: { R: 'hold', propR: 'bowl' }, reporter: { R: 'hold', propR: 'mic' }, cop: { R: 'hold', propR: 'stamp' }, landlady: { R: 'holdUp', propR: 'key' }, youNew: { R: 'hold', propR: 'chopsticks' } }[k] || {};
+  T.rick(g, C[k], { expr: e, ...props }); g.restore();
+  g.font = 'bold 34px sans-serif'; g.fillStyle = '#2e211d'; g.textAlign = 'center'; g.fillText(k, x, y + 60);
+});
+g.font = 'bold 54px sans-serif'; g.textAlign = 'left'; g.fillText('NIGHT MOVERS — new cast', 40, 70);
+window.ready = true;
+</script></body></html>
