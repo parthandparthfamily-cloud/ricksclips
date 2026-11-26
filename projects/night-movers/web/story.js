@@ -240,7 +240,7 @@ shot({ id: 'easy', t0: 26.48, t1: 28.95, set: 'room', light: 'room',
 shot({ id: 'paradise', t0: 28.95, t1: 30.75, set: 'city', light: 'sunrise', dissolve: 8,
   keys: [K(28.95, [13.6, 4.6, 4.0], [10, 1.5, 8.6], 52, -3), K(29.6, [12.0, 2.6, 5.2], [10, 1.3, 8.6], 50, 0, 'fast'), K(30.85, [11.55, 2.2, 5.6], [10, 1.25, 8.6], 47, 2.5)],
   dof: { on: [10, 1.2, 8.6], c: 4 },
-  actors: (t, f) => [A('youNew', [10, 0.48, 8.6], { pose: 'sit', expr: pick(t, [[28.95, 'smile'], [29.84, 'beam']]), L: arm(t, [[28.95, 'hang'], [29.84, 'up']]), R: arm(t, [[28.95, 'hold'], [29.84, 'up']]), propR: 'can', look: 0.3, blink: blinkAt(f, 1) }, { ground: 0.13 })],
+  actors: (t, f) => [A('youNew', [10, 0.48, 8.38], { pose: 'sit', expr: pick(t, [[28.95, 'smile'], [29.84, 'beam']]), L: arm(t, [[28.95, 'hang'], [29.84, 'up']]), R: arm(t, [[28.95, 'hold'], [29.84, 'up']]), propR: 'can', look: 0.3, blink: blinkAt(f, 1) }, { ground: 0.13 })],
   world: (t, W) => { W.city.van = false; },
 });
 // ===== "Nobody calls you, nobody chases you, and nobody is disappointed in you anymore" =====

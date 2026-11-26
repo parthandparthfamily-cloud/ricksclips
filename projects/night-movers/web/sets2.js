@@ -46,7 +46,7 @@ export function buildSets2(H) {
     const crane = new THREE.Group(); crane.position.set(-5, 9, 1); cs.add(crane); box(crane, '#f2c14e', 0, 4, 0, 0.5, 8, 0.5); const jib = new THREE.Group(); jib.position.y = 8; crane.add(jib); box(jib, '#f2c14e', 3, 0, 0, 9, 0.4, 0.4); box(jib, '#3b3f52', -2, -0.2, 0, 1.4, 0.9, 0.8); const hook = line3(jib, [5.5, 0, 0], [5.5, -6, 0], 0.02, C('#2e2a30')); box(jib, '#c89a5e', 5.5, -6.3, 0, 0.9, 0.5, 0.9);
     // sakura park + bench
     const trees = [tree(S, 8, 10, 1.1, 71), tree(S, 12, 9.5, 1.0, 72), tree(S, 16, 10.5, 1.2, 73), tree(S, 21, 9.8, 1.0, 74), tree(S, -14, 10, 1.0, 75, false)];
-    const bench = new THREE.Group(); bench.position.set(10, 0, 8.6); S.add(bench); box(bench, '#b07a45', 0, 0.45, 0, 1.6, 0.06, 0.45); box(bench, '#b07a45', 0, 0.78, -0.2, 1.6, 0.3, 0.05); for (const x of [-0.7, 0.7]) box(bench, '#3b3f52', x, 0.22, 0, 0.06, 0.45, 0.4);
+    const bench = new THREE.Group(); bench.position.set(10, 0, 8.6); bench.rotation.y = Math.PI; S.add(bench); box(bench, '#b07a45', 0, 0.45, 0, 1.6, 0.06, 0.45); box(bench, '#b07a45', 0, 0.78, -0.2, 1.6, 0.3, 0.05); for (const x of [-0.7, 0.7]) box(bench, '#3b3f52', x, 0.22, 0, 0.06, 0.45, 0.4);
     plane(S, mt(X.grassT(76), 8, 2), 14, 0.13, 10.5, 16, 4.5, { rx: -Math.PI / 2 });
     // sea, mountains, distant town, sun
     plane(S, glowT(X.water(77)), -90, 0.02, 3, 80, 160, { rx: -Math.PI / 2 }).material.map.repeat.set(6, 10);
