@@ -52,3 +52,14 @@ Every mistake that has already happened once, so it never happens twice.
 - **Skipping the gate.** "Go" means run the checklist first, then ship.
 - **EEVEE "Shadow buffer full".** Too many shadow-casting lamps on a 6 GB GPU. Raise `shadow_pool_size`, halve `shadow_resolution_scale`,
   and let only key lights cast shadows.
+
+## From "The Village Built For An Audience" (Nov 27 2026)
+- A fast camera flight between two far-apart sets is a straight line by default, and it WILL clip through houses, trees and fences
+  (and look backwards at the ground when the shot turns 180°). Give every long flight `via` points that climb over the set, and use a
+  moving dissolve instead of a flight when the camera has to turn around.
+- A shot whose first camera key sits on its first frame (no dissolve) is a hard cut. Start the first key a few frames in, or add `diss`.
+- Check the frames at the START of every shot, not just the middle: the flights are where the camera goes through walls.
+- Ambient props placed on a grid (street trees, lamp posts, banner poles) land right in front of close cameras. Clear the lanes the camera uses.
+- A scripted bird/prop "waiting" for its cue must not wait in front of the lens. Hide it until its cue frame.
+- Random-index material lookups with negative indices return undefined and render WHITE (white trees). Use Math.abs on index math.
+- Cloud stills at half res are ~5x faster than full res; render the QA proxy at s=0.25 in 3 parallel chunks (~6 min for 70 s).

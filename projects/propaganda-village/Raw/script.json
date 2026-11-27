@@ -1,0 +1,1324 @@
+{
+  "words": [
+    {
+      "word": "North",
+      "start": 0.1,
+      "end": 0.3
+    },
+    {
+      "word": "Korea",
+      "start": 0.34,
+      "end": 0.62
+    },
+    {
+      "word": "built",
+      "start": 0.7,
+      "end": 0.88
+    },
+    {
+      "word": "a",
+      "start": 0.94,
+      "end": 0.96
+    },
+    {
+      "word": "perfect",
+      "start": 1.08,
+      "end": 1.42
+    },
+    {
+      "word": "village",
+      "start": 1.48,
+      "end": 1.8
+    },
+    {
+      "word": "Then",
+      "start": 2.08,
+      "end": 2.26
+    },
+    {
+      "word": "it",
+      "start": 2.4,
+      "end": 2.44
+    },
+    {
+      "word": "forgot",
+      "start": 2.52,
+      "end": 2.76
+    },
+    {
+      "word": "to",
+      "start": 2.8,
+      "end": 2.86
+    },
+    {
+      "word": "put",
+      "start": 2.9,
+      "end": 3.04
+    },
+    {
+      "word": "people",
+      "start": 3.1,
+      "end": 3.38
+    },
+    {
+      "word": "in",
+      "start": 3.44,
+      "end": 3.5
+    },
+    {
+      "word": "it",
+      "start": 3.56,
+      "end": 3.6
+    },
+    {
+      "word": "Imagine",
+      "start": 3.86,
+      "end": 4.2
+    },
+    {
+      "word": "you're",
+      "start": 4.24,
+      "end": 4.4
+    },
+    {
+      "word": "a",
+      "start": 4.44,
+      "end": 4.46
+    },
+    {
+      "word": "young",
+      "start": 4.52,
+      "end": 4.68
+    },
+    {
+      "word": "South",
+      "start": 4.76,
+      "end": 4.98
+    },
+    {
+      "word": "Korean",
+      "start": 5.02,
+      "end": 5.32
+    },
+    {
+      "word": "soldier",
+      "start": 5.4,
+      "end": 5.74
+    },
+    {
+      "word": "posted",
+      "start": 5.8,
+      "end": 6.12
+    },
+    {
+      "word": "to",
+      "start": 6.16,
+      "end": 6.2
+    },
+    {
+      "word": "the",
+      "start": 6.26,
+      "end": 6.32
+    },
+    {
+      "word": "border",
+      "start": 6.38,
+      "end": 6.66
+    },
+    {
+      "word": "and",
+      "start": 6.8,
+      "end": 6.88
+    },
+    {
+      "word": "your",
+      "start": 6.9,
+      "end": 7.02
+    },
+    {
+      "word": "whole",
+      "start": 7.06,
+      "end": 7.22
+    },
+    {
+      "word": "job",
+      "start": 7.28,
+      "end": 7.5
+    },
+    {
+      "word": "is",
+      "start": 7.58,
+      "end": 7.62
+    },
+    {
+      "word": "to",
+      "start": 7.68,
+      "end": 7.74
+    },
+    {
+      "word": "watch",
+      "start": 7.8,
+      "end": 7.98
+    },
+    {
+      "word": "one",
+      "start": 8.18,
+      "end": 8.28
+    },
+    {
+      "word": "village",
+      "start": 8.36,
+      "end": 8.64
+    },
+    {
+      "word": "through",
+      "start": 8.7,
+      "end": 8.88
+    },
+    {
+      "word": "binoculars",
+      "start": 8.9,
+      "end": 9.48
+    },
+    {
+      "word": "Honestly",
+      "start": 9.74,
+      "end": 10.18
+    },
+    {
+      "word": "it",
+      "start": 10.4,
+      "end": 10.44
+    },
+    {
+      "word": "looks",
+      "start": 10.48,
+      "end": 10.64
+    },
+    {
+      "word": "nicer",
+      "start": 10.74,
+      "end": 11.02
+    },
+    {
+      "word": "than",
+      "start": 11.06,
+      "end": 11.16
+    },
+    {
+      "word": "your",
+      "start": 11.2,
+      "end": 11.3
+    },
+    {
+      "word": "hometown",
+      "start": 11.34,
+      "end": 11.78
+    },
+    {
+      "word": "It",
+      "start": 12.26,
+      "end": 12.3
+    },
+    {
+      "word": "has",
+      "start": 12.34,
+      "end": 12.44
+    },
+    {
+      "word": "bright",
+      "start": 12.54,
+      "end": 12.78
+    },
+    {
+      "word": "blue",
+      "start": 12.82,
+      "end": 13.0
+    },
+    {
+      "word": "roofs",
+      "start": 13.06,
+      "end": 13.34
+    },
+    {
+      "word": "tall",
+      "start": 13.56,
+      "end": 13.8
+    },
+    {
+      "word": "apartment",
+      "start": 13.86,
+      "end": 14.22
+    },
+    {
+      "word": "blocks",
+      "start": 14.26,
+      "end": 14.56
+    },
+    {
+      "word": "a",
+      "start": 14.78,
+      "end": 14.8
+    },
+    {
+      "word": "school",
+      "start": 14.88,
+      "end": 15.18
+    },
+    {
+      "word": "and",
+      "start": 15.26,
+      "end": 15.32
+    },
+    {
+      "word": "a",
+      "start": 15.36,
+      "end": 15.38
+    },
+    {
+      "word": "hospital",
+      "start": 15.44,
+      "end": 15.86
+    },
+    {
+      "word": "Every",
+      "start": 16.14,
+      "end": 16.34
+    },
+    {
+      "word": "evening",
+      "start": 16.44,
+      "end": 16.7
+    },
+    {
+      "word": "the",
+      "start": 16.74,
+      "end": 16.82
+    },
+    {
+      "word": "lights",
+      "start": 16.86,
+      "end": 17.06
+    },
+    {
+      "word": "come",
+      "start": 17.1,
+      "end": 17.22
+    },
+    {
+      "word": "on",
+      "start": 17.3,
+      "end": 17.36
+    },
+    {
+      "word": "in",
+      "start": 17.4,
+      "end": 17.44
+    },
+    {
+      "word": "the",
+      "start": 17.48,
+      "end": 17.54
+    },
+    {
+      "word": "windows",
+      "start": 17.6,
+      "end": 17.94
+    },
+    {
+      "word": "Every",
+      "start": 18.26,
+      "end": 18.46
+    },
+    {
+      "word": "morning",
+      "start": 18.52,
+      "end": 18.8
+    },
+    {
+      "word": "loudspeakers",
+      "start": 18.96,
+      "end": 19.56
+    },
+    {
+      "word": "blast",
+      "start": 19.64,
+      "end": 19.92
+    },
+    {
+      "word": "cheerful",
+      "start": 20.0,
+      "end": 20.32
+    },
+    {
+      "word": "music",
+      "start": 20.4,
+      "end": 20.66
+    },
+    {
+      "word": "across",
+      "start": 20.74,
+      "end": 21.0
+    },
+    {
+      "word": "the",
+      "start": 21.06,
+      "end": 21.12
+    },
+    {
+      "word": "fields",
+      "start": 21.18,
+      "end": 21.5
+    },
+    {
+      "word": "telling",
+      "start": 21.64,
+      "end": 21.88
+    },
+    {
+      "word": "you",
+      "start": 21.92,
+      "end": 22.0
+    },
+    {
+      "word": "how",
+      "start": 22.06,
+      "end": 22.14
+    },
+    {
+      "word": "good",
+      "start": 22.24,
+      "end": 22.4
+    },
+    {
+      "word": "life",
+      "start": 22.46,
+      "end": 22.64
+    },
+    {
+      "word": "is",
+      "start": 22.76,
+      "end": 22.86
+    },
+    {
+      "word": "on",
+      "start": 22.94,
+      "end": 22.98
+    },
+    {
+      "word": "the",
+      "start": 23.02,
+      "end": 23.1
+    },
+    {
+      "word": "other",
+      "start": 23.16,
+      "end": 23.32
+    },
+    {
+      "word": "side",
+      "start": 23.36,
+      "end": 23.64
+    },
+    {
+      "word": "and",
+      "start": 23.78,
+      "end": 23.86
+    },
+    {
+      "word": "inviting",
+      "start": 23.9,
+      "end": 24.26
+    },
+    {
+      "word": "you",
+      "start": 24.28,
+      "end": 24.36
+    },
+    {
+      "word": "to",
+      "start": 24.42,
+      "end": 24.46
+    },
+    {
+      "word": "come",
+      "start": 24.5,
+      "end": 24.64
+    },
+    {
+      "word": "over",
+      "start": 24.72,
+      "end": 24.88
+    },
+    {
+      "word": "At",
+      "start": 25.44,
+      "end": 25.5
+    },
+    {
+      "word": "first",
+      "start": 25.58,
+      "end": 25.84
+    },
+    {
+      "word": "you're",
+      "start": 25.86,
+      "end": 26.02
+    },
+    {
+      "word": "almost",
+      "start": 26.04,
+      "end": 26.26
+    },
+    {
+      "word": "jealous",
+      "start": 26.36,
+      "end": 26.72
+    },
+    {
+      "word": "Then",
+      "start": 26.96,
+      "end": 27.14
+    },
+    {
+      "word": "you",
+      "start": 27.22,
+      "end": 27.3
+    },
+    {
+      "word": "start",
+      "start": 27.38,
+      "end": 27.56
+    },
+    {
+      "word": "noticing",
+      "start": 27.66,
+      "end": 28.02
+    },
+    {
+      "word": "things",
+      "start": 28.08,
+      "end": 28.34
+    },
+    {
+      "word": "The",
+      "start": 28.62,
+      "end": 28.7
+    },
+    {
+      "word": "lights",
+      "start": 28.74,
+      "end": 28.96
+    },
+    {
+      "word": "switch",
+      "start": 29.0,
+      "end": 29.24
+    },
+    {
+      "word": "on",
+      "start": 29.36,
+      "end": 29.42
+    },
+    {
+      "word": "at",
+      "start": 29.48,
+      "end": 29.52
+    },
+    {
+      "word": "the",
+      "start": 29.56,
+      "end": 29.64
+    },
+    {
+      "word": "same",
+      "start": 29.7,
+      "end": 29.9
+    },
+    {
+      "word": "minute",
+      "start": 29.96,
+      "end": 30.16
+    },
+    {
+      "word": "every",
+      "start": 30.24,
+      "end": 30.42
+    },
+    {
+      "word": "night",
+      "start": 30.5,
+      "end": 30.68
+    },
+    {
+      "word": "in",
+      "start": 30.88,
+      "end": 30.94
+    },
+    {
+      "word": "every",
+      "start": 31.04,
+      "end": 31.22
+    },
+    {
+      "word": "building",
+      "start": 31.26,
+      "end": 31.58
+    },
+    {
+      "word": "Nobody",
+      "start": 31.84,
+      "end": 32.14
+    },
+    {
+      "word": "hangs",
+      "start": 32.18,
+      "end": 32.4
+    },
+    {
+      "word": "laundry",
+      "start": 32.46,
+      "end": 32.84
+    },
+    {
+      "word": "and",
+      "start": 33.0,
+      "end": 33.08
+    },
+    {
+      "word": "no",
+      "start": 33.16,
+      "end": 33.24
+    },
+    {
+      "word": "kids",
+      "start": 33.34,
+      "end": 33.54
+    },
+    {
+      "word": "play",
+      "start": 33.6,
+      "end": 33.74
+    },
+    {
+      "word": "outside",
+      "start": 33.82,
+      "end": 34.26
+    },
+    {
+      "word": "The",
+      "start": 34.46,
+      "end": 34.54
+    },
+    {
+      "word": "only",
+      "start": 34.6,
+      "end": 34.78
+    },
+    {
+      "word": "people",
+      "start": 34.82,
+      "end": 35.06
+    },
+    {
+      "word": "you",
+      "start": 35.1,
+      "end": 35.18
+    },
+    {
+      "word": "ever",
+      "start": 35.3,
+      "end": 35.42
+    },
+    {
+      "word": "see",
+      "start": 35.52,
+      "end": 35.68
+    },
+    {
+      "word": "are",
+      "start": 35.86,
+      "end": 35.94
+    },
+    {
+      "word": "a",
+      "start": 35.98,
+      "end": 36.0
+    },
+    {
+      "word": "few",
+      "start": 36.06,
+      "end": 36.2
+    },
+    {
+      "word": "men",
+      "start": 36.28,
+      "end": 36.46
+    },
+    {
+      "word": "who",
+      "start": 36.56,
+      "end": 36.64
+    },
+    {
+      "word": "sweep",
+      "start": 36.74,
+      "end": 36.94
+    },
+    {
+      "word": "an",
+      "start": 37.0,
+      "end": 37.04
+    },
+    {
+      "word": "empty",
+      "start": 37.12,
+      "end": 37.3
+    },
+    {
+      "word": "street",
+      "start": 37.38,
+      "end": 37.66
+    },
+    {
+      "word": "and",
+      "start": 37.8,
+      "end": 37.88
+    },
+    {
+      "word": "then",
+      "start": 37.9,
+      "end": 38.0
+    },
+    {
+      "word": "leave",
+      "start": 38.1,
+      "end": 38.34
+    },
+    {
+      "word": "You",
+      "start": 38.84,
+      "end": 38.94
+    },
+    {
+      "word": "zoom",
+      "start": 39.02,
+      "end": 39.2
+    },
+    {
+      "word": "in",
+      "start": 39.26,
+      "end": 39.32
+    },
+    {
+      "word": "on",
+      "start": 39.4,
+      "end": 39.44
+    },
+    {
+      "word": "a",
+      "start": 39.5,
+      "end": 39.52
+    },
+    {
+      "word": "window",
+      "start": 39.58,
+      "end": 39.86
+    },
+    {
+      "word": "and",
+      "start": 40.08,
+      "end": 40.16
+    },
+    {
+      "word": "see",
+      "start": 40.22,
+      "end": 40.36
+    },
+    {
+      "word": "straight",
+      "start": 40.44,
+      "end": 40.72
+    },
+    {
+      "word": "through",
+      "start": 40.74,
+      "end": 40.94
+    },
+    {
+      "word": "it",
+      "start": 40.98,
+      "end": 41.04
+    },
+    {
+      "word": "to",
+      "start": 41.08,
+      "end": 41.14
+    },
+    {
+      "word": "the",
+      "start": 41.2,
+      "end": 41.26
+    },
+    {
+      "word": "sky",
+      "start": 41.32,
+      "end": 41.5
+    },
+    {
+      "word": "behind",
+      "start": 41.6,
+      "end": 41.92
+    },
+    {
+      "word": "There's",
+      "start": 42.14,
+      "end": 42.32
+    },
+    {
+      "word": "no",
+      "start": 42.4,
+      "end": 42.5
+    },
+    {
+      "word": "glass",
+      "start": 42.6,
+      "end": 42.92
+    },
+    {
+      "word": "and",
+      "start": 43.16,
+      "end": 43.24
+    },
+    {
+      "word": "no",
+      "start": 43.3,
+      "end": 43.38
+    },
+    {
+      "word": "rooms",
+      "start": 43.48,
+      "end": 43.72
+    },
+    {
+      "word": "inside",
+      "start": 43.78,
+      "end": 44.18
+    },
+    {
+      "word": "In",
+      "start": 44.4,
+      "end": 44.44
+    },
+    {
+      "word": "the",
+      "start": 44.48,
+      "end": 44.56
+    },
+    {
+      "word": "middle",
+      "start": 44.62,
+      "end": 44.84
+    },
+    {
+      "word": "of",
+      "start": 44.88,
+      "end": 44.92
+    },
+    {
+      "word": "it",
+      "start": 44.98,
+      "end": 45.02
+    },
+    {
+      "word": "all",
+      "start": 45.1,
+      "end": 45.2
+    },
+    {
+      "word": "stands",
+      "start": 45.26,
+      "end": 45.54
+    },
+    {
+      "word": "one",
+      "start": 45.64,
+      "end": 45.72
+    },
+    {
+      "word": "of",
+      "start": 45.74,
+      "end": 45.8
+    },
+    {
+      "word": "the",
+      "start": 45.84,
+      "end": 45.92
+    },
+    {
+      "word": "tallest",
+      "start": 45.98,
+      "end": 46.36
+    },
+    {
+      "word": "flagpoles",
+      "start": 46.42,
+      "end": 46.94
+    },
+    {
+      "word": "on",
+      "start": 47.02,
+      "end": 47.08
+    },
+    {
+      "word": "Earth",
+      "start": 47.18,
+      "end": 47.38
+    },
+    {
+      "word": "flying",
+      "start": 47.58,
+      "end": 47.86
+    },
+    {
+      "word": "a",
+      "start": 47.9,
+      "end": 47.92
+    },
+    {
+      "word": "flag",
+      "start": 47.98,
+      "end": 48.24
+    },
+    {
+      "word": "that",
+      "start": 48.28,
+      "end": 48.38
+    },
+    {
+      "word": "reportedly",
+      "start": 48.44,
+      "end": 48.92
+    },
+    {
+      "word": "weighs",
+      "start": 48.98,
+      "end": 49.18
+    },
+    {
+      "word": "about",
+      "start": 49.26,
+      "end": 49.46
+    },
+    {
+      "word": "as",
+      "start": 49.5,
+      "end": 49.56
+    },
+    {
+      "word": "much",
+      "start": 49.64,
+      "end": 49.78
+    },
+    {
+      "word": "as",
+      "start": 49.84,
+      "end": 49.88
+    },
+    {
+      "word": "a",
+      "start": 49.96,
+      "end": 49.98
+    },
+    {
+      "word": "motorbike",
+      "start": 50.04,
+      "end": 50.5
+    },
+    {
+      "word": "You",
+      "start": 50.68,
+      "end": 50.76
+    },
+    {
+      "word": "find",
+      "start": 50.86,
+      "end": 51.06
+    },
+    {
+      "word": "out",
+      "start": 51.12,
+      "end": 51.22
+    },
+    {
+      "word": "why",
+      "start": 51.28,
+      "end": 51.4
+    },
+    {
+      "word": "it's",
+      "start": 51.48,
+      "end": 51.6
+    },
+    {
+      "word": "there",
+      "start": 51.64,
+      "end": 51.86
+    },
+    {
+      "word": "Your",
+      "start": 52.36,
+      "end": 52.5
+    },
+    {
+      "word": "side",
+      "start": 52.58,
+      "end": 52.8
+    },
+    {
+      "word": "put",
+      "start": 52.84,
+      "end": 52.96
+    },
+    {
+      "word": "up",
+      "start": 53.02,
+      "end": 53.08
+    },
+    {
+      "word": "a",
+      "start": 53.16,
+      "end": 53.18
+    },
+    {
+      "word": "big",
+      "start": 53.28,
+      "end": 53.44
+    },
+    {
+      "word": "flagpole",
+      "start": 53.54,
+      "end": 54.0
+    },
+    {
+      "word": "first",
+      "start": 54.08,
+      "end": 54.36
+    },
+    {
+      "word": "so",
+      "start": 54.56,
+      "end": 54.64
+    },
+    {
+      "word": "they",
+      "start": 54.68,
+      "end": 54.78
+    },
+    {
+      "word": "built",
+      "start": 54.84,
+      "end": 55.0
+    },
+    {
+      "word": "a",
+      "start": 55.08,
+      "end": 55.1
+    },
+    {
+      "word": "bigger",
+      "start": 55.16,
+      "end": 55.4
+    },
+    {
+      "word": "one",
+      "start": 55.52,
+      "end": 55.6
+    },
+    {
+      "word": "North",
+      "start": 55.9,
+      "end": 56.1
+    },
+    {
+      "word": "Korea",
+      "start": 56.14,
+      "end": 56.42
+    },
+    {
+      "word": "says",
+      "start": 56.52,
+      "end": 56.7
+    },
+    {
+      "word": "around",
+      "start": 56.78,
+      "end": 57.0
+    },
+    {
+      "word": "two",
+      "start": 57.1,
+      "end": 57.24
+    },
+    {
+      "word": "hundred",
+      "start": 57.32,
+      "end": 57.56
+    },
+    {
+      "word": "families",
+      "start": 57.64,
+      "end": 58.0
+    },
+    {
+      "word": "live",
+      "start": 58.06,
+      "end": 58.22
+    },
+    {
+      "word": "in",
+      "start": 58.26,
+      "end": 58.3
+    },
+    {
+      "word": "Kijong-dong",
+      "start": 58.36,
+      "end": 58.94
+    },
+    {
+      "word": "farming",
+      "start": 59.2,
+      "end": 59.54
+    },
+    {
+      "word": "and",
+      "start": 59.62,
+      "end": 59.72
+    },
+    {
+      "word": "raising",
+      "start": 59.78,
+      "end": 60.08
+    },
+    {
+      "word": "their",
+      "start": 60.12,
+      "end": 60.24
+    },
+    {
+      "word": "kids",
+      "start": 60.28,
+      "end": 60.56
+    },
+    {
+      "word": "But",
+      "start": 60.8,
+      "end": 60.9
+    },
+    {
+      "word": "to",
+      "start": 60.94,
+      "end": 60.98
+    },
+    {
+      "word": "everyone",
+      "start": 61.1,
+      "end": 61.42
+    },
+    {
+      "word": "watching",
+      "start": 61.48,
+      "end": 61.78
+    },
+    {
+      "word": "from",
+      "start": 61.82,
+      "end": 61.92
+    },
+    {
+      "word": "the",
+      "start": 61.96,
+      "end": 62.04
+    },
+    {
+      "word": "South",
+      "start": 62.1,
+      "end": 62.36
+    },
+    {
+      "word": "it",
+      "start": 62.58,
+      "end": 62.62
+    },
+    {
+      "word": "looks",
+      "start": 62.66,
+      "end": 62.82
+    },
+    {
+      "word": "like",
+      "start": 62.88,
+      "end": 63.0
+    },
+    {
+      "word": "a",
+      "start": 63.06,
+      "end": 63.08
+    },
+    {
+      "word": "movie",
+      "start": 63.14,
+      "end": 63.44
+    },
+    {
+      "word": "set",
+      "start": 63.48,
+      "end": 63.68
+    },
+    {
+      "word": "It's",
+      "start": 63.88,
+      "end": 63.98
+    },
+    {
+      "word": "a",
+      "start": 64.04,
+      "end": 64.06
+    },
+    {
+      "word": "town",
+      "start": 64.1,
+      "end": 64.32
+    },
+    {
+      "word": "built",
+      "start": 64.4,
+      "end": 64.56
+    },
+    {
+      "word": "not",
+      "start": 64.66,
+      "end": 64.82
+    },
+    {
+      "word": "to",
+      "start": 64.86,
+      "end": 64.9
+    },
+    {
+      "word": "be",
+      "start": 64.96,
+      "end": 65.02
+    },
+    {
+      "word": "lived",
+      "start": 65.1,
+      "end": 65.32
+    },
+    {
+      "word": "in",
+      "start": 65.4,
+      "end": 65.44
+    },
+    {
+      "word": "but",
+      "start": 65.66,
+      "end": 65.76
+    },
+    {
+      "word": "to",
+      "start": 65.8,
+      "end": 65.84
+    },
+    {
+      "word": "be",
+      "start": 65.9,
+      "end": 65.96
+    },
+    {
+      "word": "looked",
+      "start": 66.02,
+      "end": 66.26
+    },
+    {
+      "word": "at",
+      "start": 66.36,
+      "end": 66.42
+    },
+    {
+      "word": "And",
+      "start": 66.96,
+      "end": 67.02
+    },
+    {
+      "word": "the",
+      "start": 67.06,
+      "end": 67.12
+    },
+    {
+      "word": "longer",
+      "start": 67.16,
+      "end": 67.42
+    },
+    {
+      "word": "you",
+      "start": 67.48,
+      "end": 67.56
+    },
+    {
+      "word": "stare",
+      "start": 67.64,
+      "end": 67.88
+    },
+    {
+      "word": "at",
+      "start": 67.94,
+      "end": 68.0
+    },
+    {
+      "word": "it",
+      "start": 68.06,
+      "end": 68.12
+    },
+    {
+      "word": "the",
+      "start": 68.28,
+      "end": 68.36
+    },
+    {
+      "word": "more",
+      "start": 68.4,
+      "end": 68.56
+    },
+    {
+      "word": "you",
+      "start": 68.6,
+      "end": 68.68
+    },
+    {
+      "word": "understand",
+      "start": 68.76,
+      "end": 69.18
+    },
+    {
+      "word": "who",
+      "start": 69.22,
+      "end": 69.3
+    },
+    {
+      "word": "the",
+      "start": 69.36,
+      "end": 69.46
+    },
+    {
+      "word": "audience",
+      "start": 69.56,
+      "end": 69.86
+    },
+    {
+      "word": "is",
+      "start": 70.0,
+      "end": 70.16
+    }
+  ]
+}

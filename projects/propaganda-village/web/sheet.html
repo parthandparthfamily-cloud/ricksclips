@@ -1,0 +1,9 @@
+<!doctype html><html><body style="margin:0;background:#e9c35a"><canvas id="c" width="2400" height="1300"></canvas>
+<script type="module">
+import * as T from './toon.js';
+const g = document.getElementById('c').getContext('2d');
+const L = [['min','grin',{R:'holdUp',propR:'binos'}],['sarge','smirk',{L:'hold',propL:'mug',R:'point'}],['kang','nervous',{}],['foreman','beam',{R:'up'}],['announcer','grin',{R:'hold',propR:'mic',L:'thumb'}],['guardA','stern',{}],['guardB','smugsmile',{L:'hip'}],
+ ['sweepA','bored',{R:'hold',propR:'broom'}],['sweepB','neutral',{R:'hold',propR:'broom'}],['sweepC','sleepy',{R:'hold',propR:'broom'}],['grandma','smile',{R:'wave'}],['touristA','shock',{R:'hold',propR:'camera'}],['touristB','laugh',{R:'holdUp',propR:'binos'}],['touristC','think',{R:'chin'}]];
+L.forEach(([k,e,o],i)=>{ const x = 170 + (i%7)*340, y = 610 + Math.floor(i/7)*650; g.save(); g.translate(x-300*0.55, y-975*0.55); g.scale(0.55,0.55); T.castDraw({g}, T.PV_CAST[k], {expr:e, ...o}); g.restore(); g.font='bold 34px sans-serif'; g.fillStyle='#2b1f1c'; g.textAlign='center'; g.fillText(k, x, y+40); });
+window.ready=1;
+</script></body></html>
