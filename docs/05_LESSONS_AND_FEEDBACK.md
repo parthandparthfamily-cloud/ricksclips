@@ -26,6 +26,13 @@ Every mistake that has already happened once, so it never happens twice.
 - Sign text can overflow its board: auto-fit sign text.
 - A camera that is fitted to "include everyone" can fly backwards through a wall. Clamp every camera key inside the set's walls and ceiling.
 
+- 9:16 at a 40° lens shows only ±0.4 m at 2 m: first drafts framed every shot as a close-up (heads ~45% of width). Fix: widen the lens
+  (~×1.3) and pull back (~×1.3) globally, then tighten only the punchline close-ups. Re-check every shot's mid still afterwards.
+- A global camera pull-back can push a key through a wall (the ending camera ended up inside the apartment). Pin wall-adjacent shots explicitly.
+- White 3D dust/smoke under an orange dusk sun toon-shades to brown "balls". Use a softer, whiter light for the shot or paler puff colours.
+- Props held at chest height can cover the face when the arm pose changes (folded clothes, a bundle during a cough). Check hand-off frames.
+- When the usual sound sites are blocked from the cloud, public CC0 libraries on GitHub work (wyzowl/sfx-kit for SFX; AERIS CC0 music).
+
 ## Audio
 - Trimming at whisper timestamps (-45 dB) cuts words mid-syllable. Trim on silence only (-58 dB, 90 ms guards).
   The video can be longer; a cut word can't be fixed.

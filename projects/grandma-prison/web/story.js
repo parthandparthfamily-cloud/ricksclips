@@ -20,6 +20,7 @@ export const LIGHTS = {
   night: { az: -80, el: 40, sky: '#8aa6ea', ground: '#3a4a86', hemi: 1.25, sun: '#c6d6ff', sunI: 1.1, fog: '#4a62a8', fogNear: 40, fogFar: 300, skyTop: '#1c2c70', skyHor: '#3b5cb0', sat: 1.22, gain: '#e4ecff', vig: 0.28, shadowExt: 7 },
   morning: { az: -110, el: 22, sky: '#fff0dc', ground: '#b8a07a', hemi: 1.3, sun: '#ffdcae', sunI: 2.0, fog: '#f6e2cc', fogNear: 60, fogFar: 700, skyTop: '#6c9ad8', skyHor: '#ffe2c4', sat: 1.12, vig: 0.2, shadowExt: 10 },
   flash: { az: -40, el: 30, sky: '#f4e6cc', ground: '#a8906e', hemi: 1.3, sun: '#ffe6c0', sunI: 1.9, fog: '#eedcc0', fogNear: 50, fogFar: 600, skyTop: '#a89a8a', skyHor: '#f2dcc0', sat: 0.62, gain: '#ffeccc', vig: 0.34, shadowExt: 10 },
+  evening: { az: 200, el: 18, sky: '#f4ece8', ground: '#a89a8a', hemi: 1.45, sun: '#ffd8aa', sunI: 1.4, fog: '#f0c8a0', fogNear: 60, fogFar: 700, skyTop: '#6a7ac8', skyHor: '#ffc890', sunDisc: '#fff0c8', sunSize: 0.004, sat: 1.08, vig: 0.22, shadowExt: 9 },
   dusk: { az: 200, el: 12, sky: '#c8b0d8', ground: '#7a5a4a', hemi: 1.15, sun: '#ffb46c', sunI: 2.4, fog: '#f0b88c', fogNear: 60, fogFar: 700, skyTop: '#5f62b0', skyHor: '#ffbf7e', sunDisc: '#fff0c8', sunSize: 0.004, sat: 1.15, vig: 0.24, shadowExt: 9 },
 };
 export const lightFor = (S) => ({ ...LIGHTS[S.light] });
@@ -336,11 +337,11 @@ const SHOTS = [
     act(f) { return [P('fumiko', { pose: 'sit', expr: ex(f, [[1405, 'beam'], [1433, 'laugh'], [1446, 'smugsmile']]), L: { a: 'wave', b: 'up', t: qq(0.5 + 0.5 * Math.sin(f * 0.45)) }, R: f > 1444 ? 'thumb' : 'hold', talk: flap(f, 1410, 1430) }, [204.8, 0.2, -2.35])]; },
     fx(f) { return [...spark(f, 1446, [205.6, 1.28, -3.95], 0.07), ...spark(f, 1452, [205.95, 1.22, -3.95], 0.05), ...motes(f, [205, 1.4, -2], [2, 1.6, 2], 12, '#dfe8ff')]; } },
   // 30 ---- "This is her fifth time in." — pan across her five souvenir photos; each pops in on a beat
-  { id: 'fifth', wide: [1.3, 1.9], a: 1466, b: 1506, dis: 5, set: 'prison', light: 'night', cinf: 6, focus: [205.0, 1.6, -3.99],
-    keys: [K(1466, [204.15, 1.62, -2.75], [204.35, 1.6, -3.99], 36, -2), K(1506, [205.55, 1.56, -2.8], [205.6, 1.6, -3.99], 36, 2), K(1516, [205.7, 1.56, -2.8], [205.7, 1.6, -3.99], 36, 2)],
+  { id: 'fifth', wide: [1.3, 1.75], a: 1466, b: 1506, dis: 5, set: 'prison', light: 'night', cinf: 6, focus: [205.0, 1.6, -3.99],
+    keys: [K(1466, [204.35, 1.64, -3.0], [204.45, 1.6, -3.99], 36, -2), K(1506, [204.95, 1.57, -3.05], [204.95, 1.6, -3.99], 36, 2), K(1516, [205.0, 1.57, -3.05], [205.0, 1.6, -3.99], 36, 2)],
     act(f) { const out = [], hairs = ['#2b211c', '#5a4a42', '#8d8794', '#c9c6cf', '#ecebf2'], exps = ['beam', 'smile', 'grin', 'laugh', 'wink'];
       for (let i = 0; i < 5; i++) { const f0 = 1468 + i * 7; if (f < f0) continue; const pop = clamp(E.back(ramp(f, f0, f0 + 6)), 0, 1.2);
-        out.push(P({ id: 'fphoto' + i, o: { ...TT.PEOPLE.fumiko, hair: hairs[i], num: String(i + 1) } }, { expr: exps[i], blink: 0, L: i === 4 ? 'thumb' : 'hang', R: i % 2 ? 'hold' : 'hang' }, [204.0 + i * 0.36, 1.457 + (i % 2) * 0.12, -3.962], { s: 0.13 * pop, yaw: 0, blob: false, shadow: false, order: 3 })); }
+        out.push(P({ id: 'fphoto' + i, o: { ...TT.PEOPLE.fumiko, hair: hairs[i], num: String(i + 1) } }, { expr: exps[i], blink: 0, L: i === 4 ? 'thumb' : 'hang', R: i % 2 ? 'hold' : 'hang' }, [204.0 + i * 0.36, 1.43 + (i % 2) * 0.12, -3.962], { s: 0.16 * pop, yaw: 0, blob: false, shadow: false, order: 3 })); }
       return out; },
     fx(f) { const out = []; for (let i = 0; i < 5; i++) out.push(...spark(f, 1468 + i * 7, [204.12 + i * 0.36, 1.72 + (i % 2) * 0.12, -3.9], 0.035, 10)); return out; } },
   // 31 ---- "She tells you she cried..." (part 1) — Fumiko leans in and tells her
@@ -364,7 +365,7 @@ const SHOTS = [
       const w = P('warden', { expr: ex(f, [[1623, 'neutral'], [1668, 'smile'], [1680, 'beam']]), L: handed ? 'hang' : 'hold', R: handed ? 'hip' : { a: 'hold', b: 'point', t: qq(ramp(f, 1690, 1704)) }, look: -0.7 }, [203.95, 0.02, -1.75], { s: 1.1 });
       if (!handed) hold(w, 'prisonClothes', 'R', { dz: 0.1 });
       const h = P('hanaIn', { pose: 'sit', expr: ex(f, [[1623, 'smile'], [1690, 'neutral'], [1712, 'bored'], [1720, 'stern']]), L: 'hold', R: 'hold', headTilt: f > 1712 ? -8 : 0, look: f > 1712 ? -0.4 : 0.6 }, [202.95, 0.2, -2.35]);
-      if (handed) hold(h, 'prisonClothes', 'R', { u: [300, SITY - 330], dz: 0.12 });
+      if (handed) hold(h, 'prisonClothes', 'R', { u: [300, SITY - 95], dz: 0.12 });
       return [w, h, P('fumiko', { pose: 'sit', expr: f > 1712 ? 'nervous' : 'smile', L: 'hold', R: 'hold', look: -0.8 }, [204.8, 0.2, -2.35])]; },
     fx(f) { return [...spark(f, 1705, [203.3, 1.05, -2.0], 0.05), ...motes(f, [203.5, 1.5, -2], [2.5, 1.6, 2], 18, '#fff1c8'), ...(f > 1715 ? sweat(f, [202.95, 0.85, -2.35]) : [])]; } },
   // 34 ---- "Your sentence is over." — the bars slide open; she walks out in her old cardigan; friends wave, Fumiko cries
@@ -388,17 +389,17 @@ const SHOTS = [
     act(f) { const h = P('hana', { expr: ex(f, [[1873, 'neutral'], [1890, 'bored']]), look: dart(f, 4, 1), L: 'hang', R: 'hang', headTilt: -5 }, [-5.0, 0.14, 2.1]); hold(h, 'prisonBundle', 'R', { dz: 0.06 }); return [h]; },
     fx(f) { const out = []; for (let k = 0; k < 5; k++) { const t = ((f - 1873) * 0.012 + k / 5) % 1; out.push(FX('leaf', [-6 + Math.sin(t * 9 + k) * 1.5 + t * 2, 3 - t * 3, 2.5 + Math.cos(t * 7 + k)], 0.08, [t * 6, k, t * 4], ['#d9822b', '#c4452c', '#e6b13a'][k % 3])); } return out; } },
   // 37 ---- "Your apartment smells like dust." — door opens, a dust cloud explodes out, she coughs, glances across at the glowing HAPPY MART
-  { id: 'dust', a: 1907, b: 1959, dis: 8, set: 'apt', light: 'dusk', cinf: 6, focus: (f) => (f < 1940 ? [3.3, 1.2, 1.6] : [4.15, 1.2, 3.8]),
-    keys: [K(1907, [5.4, 1.55, 3.9], [2.6, 1.1, 1.0], 42, 3), K(1924, [5.0, 1.45, 4.5], [2.7, 1.1, 1.1], 40, -1, 'easeOut'), K(1940, [4.6, 1.42, 5.0], [3.2, 1.1, 1.8], 40, 2), K(1955, [2.75, 1.4, 4.9], [13.9, -0.9, 0.0], 34, -2, 'easeOut'), K(1965, [2.7, 1.4, 4.95], [13.9, -0.9, 0.0], 34, -2)],
+  { id: 'dust', a: 1907, b: 1959, dis: 8, wide: [1.2, 1.0], set: 'apt', light: 'evening', cinf: 6, focus: (f) => (f < 1944 ? [3.3, 1.2, 1.6] : [3.85, 1.2, 3.5]),
+    keys: [K(1907, [4.5, 1.75, 5.2], [2.7, 1.1, 1.2], 44, 3), K(1924, [4.4, 1.7, 5.6], [2.9, 1.1, 1.5], 42, -1, 'easeOut'), K(1940, [4.25, 1.6, 6.1], [3.4, 1.15, 1.8], 40, 2), K(1955, [4.15, 1.48, 6.0], [3.75, 1.2, 2.9], 36, -2, 'easeOut'), K(1965, [4.13, 1.47, 6.0], [3.75, 1.2, 2.9], 36, -2)],
     act(f) { const back = ramp(f, 1928, 1950); const cough = f >= 1930 && f < 1946;
-      const h = P('hana', { expr: f >= 1948 ? 'sly' : cough ? 'laugh' : ex(f, [[1907, 'neutral'], [1922, 'shock']]), talk: cough ? 1 : 0, L: cough ? 'mouth' : 'hang', R: f < 1914 ? { a: 'hang', b: 'point', t: qq(ramp(f, 1907, 1913)) } : 'hang', look: f >= 1948 ? 1 : 0, squash: cough ? 0.03 * Math.sin(f * 2) : 0 }, [lerp(3.3, 4.15, back), 0, lerp(1.6, 3.8, back)]);
-      hold(h, 'aptBundle', 'L', { dz: 0.06 }); return [h]; },
+      const h = P('hana', { expr: f >= 1948 ? 'sly' : cough ? 'laugh' : ex(f, [[1907, 'neutral'], [1922, 'shock']]), talk: cough ? 1 : 0, L: cough ? 'mouth' : 'hang', R: f < 1914 ? { a: 'hang', b: 'point', t: qq(ramp(f, 1907, 1913)) } : 'hang', look: f >= 1948 ? -0.6 : 0, squash: cough ? 0.03 * Math.sin(f * 2) : 0 }, [lerp(3.3, 3.85, back), 0, lerp(1.6, 3.5, back)]);
+      hold(h, 'aptBundle', 'R', { dz: 0.06 }); return [h]; },
     props(f) { return { aptDoor: { r: [0, 1.35 * eo(ramp(f, 1913, 1924)), 0] } }; },
     flags: { dusty: true, tvOff: true },
-    fx(f) { const out = [], t0 = 1918; if (f >= t0) { for (let k = 0; k < 34; k++) { const fk = t0 + (k % 7) * 2, t = clamp((f - fk) / 40); if (t <= 0) continue; const a = k * 2.39, r = 0.4 + (k % 5) * 0.35, e = eo(t);
-          out.push(FX('puff', [2.5 + e * (1.2 + Math.cos(a) * r * 0.8), 0.4 + (k % 6) * 0.3 + e * (0.5 + Math.sin(a) * 0.3), 0.9 + e * (1.0 + Math.sin(a * 1.7) * r * 1.4)], (0.12 + (k % 4) * 0.05) * (0.3 + e * 1.1) * (1 - Math.max(0, t - 0.8) * 3), [t, k, 0], ['#ddd6ca', '#e9e3d8', '#cfc6b8'][k % 3])); } }
-      for (const f0 of [1930, 1936, 1942]) out.push(...burst(f, f0, [lerp(3.3, 4.15, ramp(f, 1928, 1950)), 1.13, lerp(1.6, 3.8, ramp(f, 1928, 1950)) + 0.1], 4, { s: 0.04, spread: 0.2, up: 0.1, c: '#d8d0c2' }));
-      return [...out, ...motes(f, [3.0, 1.2, 1.8], [1.2, 1.6, 1.5], 22, '#ffe2b0'), ...spark(f, 1950, [13.9, -0.9, 0.2], 0.4)]; } },
+    fx(f) { const out = [], t0 = 1918; if (f >= t0) { for (let k = 0; k < 52; k++) { const fk = t0 + (k % 9) * 2, t = clamp((f - fk) / 40); if (t <= 0) continue; const a = k * 2.39, r = 0.4 + (k % 5) * 0.35, e = eo(t);
+          out.push(FX('puff', [2.5 + e * (0.35 + Math.abs(Math.cos(a)) * r * 0.45), 0.4 + (k % 6) * 0.33 + e * (0.6 + Math.sin(a) * 0.35), 0.9 + e * (1.2 + Math.sin(a * 1.7) * r * 1.6)], (0.07 + (k % 4) * 0.035) * (0.3 + e * 1.1) * (1 - Math.max(0, t - 0.8) * 3), [t, k, 0], ['#f4f2ee', '#e6e4e0', '#d9d7d4'][k % 3])); } }
+      for (const f0 of [1930, 1936, 1942]) out.push(...burst(f, f0, [lerp(3.3, 3.85, ramp(f, 1928, 1950)), 1.13, lerp(1.6, 3.5, ramp(f, 1928, 1950)) + 0.1], 4, { s: 0.04, spread: 0.2, up: 0.1, c: '#d8d0c2' }));
+      return [...out, ...motes(f, [3.0, 1.2, 1.8], [1.2, 1.6, 1.5], 22, '#ffe2b0'), ...spark(f, 1947, [3.5, 0.3, -12.3], 0.35, 13), ...spark(f, 1951, [2.6, 0.6, -12.3], 0.22, 9)]; } },
 ];
 for (const s of SHOTS) { s.props = s.props || (() => ({})); s.fx = s.fx || (() => []); s.act = s.act || (() => []); }
 export { SHOTS };
