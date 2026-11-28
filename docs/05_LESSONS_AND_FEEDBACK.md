@@ -52,3 +52,12 @@ Every mistake that has already happened once, so it never happens twice.
 - **Skipping the gate.** "Go" means run the checklist first, then ship.
 - **EEVEE "Shadow buffer full".** Too many shadow-casting lamps on a 6 GB GPU. Raise `shadow_pool_size`, halve `shadow_resolution_scale`,
   and let only key lights cast shadows.
+
+## Added after "The Village Where Everyone Is Acting" (Hogeweyk, Nov 2026)
+- **Do the 9:16 lateral math for every key.** Put both the subject and every other named character inside `d · tan(fov/2) · 0.5625` of the look line. Most bad stills were a character just outside the frame, or a camera sitting 0.3 m from a shelf, wardrobe or card.
+- **Check for occluders on the camera line**, not just the framing. A shelf end, a signpost board or another character's card can hide a face completely (the hero behind a shelf, a resident's head behind an arrow sign).
+- **Interiors live far below the world (y = -300).** That keeps them invisible from the village and outside the sun's shadow frustum. Walls and ceilings don't cast shadows, so the sun still lights the room.
+- **Size extruded FX shapes to real metres.** A ±0.5 m star or heart is huge next to a 0.6 m head. Use sparkles ~0.1 m, hearts ~0.2 m, and scale bursts down for macro shots.
+- **Fly-overs:** route spline via-points around rooftop signs and flat roofs, and never end a pull-back behind the front wall of a building.
+- **Serve fonts with a font MIME type** (font/ttf) from the local render server, or the canvas sign text silently falls back.
+- **Cloud sessions without Freesound/Mixkit:** real CC audio is reachable via raw.githubusercontent.com: Meta-open-sound's Oculus Audio Pack (CC BY 4.0, credit it) and the zuujis-cc0 OpenGameArt music mirrors (CC0).

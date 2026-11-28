@@ -1,0 +1,24 @@
+<!doctype html><html><body style="margin:0;background:#f0c35a"><canvas id="c" width="2400" height="1500"></canvas>
+<script type="module">
+import * as T from './toon.js';
+const CAST = {
+  hero: { outfit: "cardigan", hat: "tufts", hair: "#f4f1ea", moustache: "#f4f1ea", top: "#d9a23a", shirt: "#7fa8d8", pants: "#7a5a3e", shoes: "#5a3524" },
+  carer: { outfit: "blouse", hairStyle: "bun", hair: "#9a4a2a", top: "#a98bd6", pants: "#2f3a66" },
+  hair: { outfit: "smock", hat: "bob", hairStyle: "bob", hair: "#c2402f", clip: "#f2c33a", top: "#2fa39a", trim: "#f07aa8", tag: true, shoes: "#d6333c" },
+  waiter: { outfit: "waiter", hat: "slick", hair: "#2a211d", moustache: "#2a211d", top: "#26232b", bow: "#d6333c" },
+  cashier: { outfit: "polo", hat: "visor", hair: "#5a3b2a", top: "#3f9a4a", collar: "#f2c33a", pants: "#2f3550" },
+  desk: { outfit: "twinset", hat: "greybun", hairStyle: "bun", hair: "#b9b4ae", glasses: "round", top: "#2e3f73" },
+  resA: { outfit: "knit", hat: "flatcap", hatCol: "#7a6a52", beard: "#f2f0ea", hairStyle: "bald", top: "#c9503f", zig: "#f4e9d2" },
+  resB: { outfit: "dress", hat: "beret", hatCol: "#3f6fd1", hair: "#e7e3dc", top: "#e07ab0", glasses: "round" },
+  resC: { outfit: "raincoat", hat: "bald", hair: "#dcd6cc", moustache: "#dcd6cc", top: "#f2c22e" },
+  gardener: { outfit: "overalls", hat: "straw", top: "#e05a4f", pants: "#4f7fb8", patch: "#f2c33a" },
+};
+const g = document.getElementById('c').getContext('2d');
+const rows = [
+  [['hero', {expr:'grin', L:'wave'}], ['hero', {expr:'nervous'}], ['carer', {expr:'smile', R:'wave'}], ['hair', {expr:'beam', R:'holdUp', propR:'scissors'}], ['hair', {expr:'smile', pose:'sit'}], ['waiter', {expr:'smugsmile', R:'holdUp', propR:'tray'}], ['cashier', {expr:'grin', R:'wave'}]],
+  [['desk', {expr:'smile', R:'point'}], ['resA', {expr:'laugh'}], ['resB', {expr:'smile'}], ['resC', {expr:'think', R:'chin'}], ['gardener', {expr:'grin', R:'hold', propR:'can'}], ['hero', {expr:'shock', L:'up', R:'up'}], ['hero', {expr:'laugh', pose:'sit', R:'hold', propR:'basket'}]],
+];
+rows.forEach((row, r) => row.forEach(([k, o], i) => { g.save(); g.translate(170 + i * 335, 700 + r * 740 - (o.pose==='sit'? 180:0)); g.scale(0.95, 0.95); T.rick(g, CAST[k], o); g.restore();
+  g.font = 'bold 34px sans-serif'; g.fillStyle = '#2b1f1c'; g.textAlign='center'; g.fillText(k, 170 + i * 335, 735 + r * 740); }));
+window.ready = true;
+</script></body></html>
