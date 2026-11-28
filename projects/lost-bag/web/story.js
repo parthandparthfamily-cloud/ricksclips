@@ -303,7 +303,7 @@ const COMPS = [
     fp: () => [703.47, 1.3, -2.35], cinf: 4,
     act: (f) => [ch('earlM', 'earlJkt', [703.47, 0, -2.35], { expr: seq(f, [[1610, 'smirk'], [1620, 'sly'], [1630, 'wink']]), L: 'hip', R: f > 1622 ? 'thumb' : 'hip', look: 0.2, blink: blinkAt(f, 35), headTilt: ht(f, 35, 6) }, { ...life(f, 35), flip: true, s: 0.95, blob: false })] },
   // ---------------- "flips the price tag" ----------------
-  { id: 'flip', a: 1640, b: 1672, set: 'F', tin: 'fly', keys: () => [K(1640, [701.35, 1.4, -1.55], [700.7, 1.12, -2.55], 38, 1), K(1672, [701.2, 1.35, -1.7], [700.68, 1.1, -2.55], 34, -2)],
+  { id: 'flip', a: 1640, b: 1672, set: 'F', tin: 'dissolve', keys: () => [K(1636, [701.35, 1.4, -1.55], [700.7, 1.12, -2.55], 38, 1), K(1672, [701.2, 1.35, -1.7], [700.68, 1.1, -2.55], 34, -2)],
     fp: () => [700.7, 1.12, -2.55], cinf: 11,
     st: (f, C) => { const P = [700.45, 0, -2.6]; const h = cardPt(P, C.pos, 420, 470); const fl = ez(ramp(f, 1642, 1656)); return { sleeveTag: { p: [h[0] + Math.sin(h[3]) * 0.06, h[1] - 0.1, h[2] + Math.cos(h[3]) * 0.06], ry: h[3] + fl * Math.PI, s: 1.1 }, stars: stars([h[0], h[1] - 0.1, h[2] + 0.1], 5, 0.12, f, 1656, 0.02, 12) }; },
     act: (f) => [ch('earl', 'earlJkt', [700.45, 0, -2.6], { expr: f < 1656 ? 'think' : 'shock', L: 'hang', R: 'holdUp', look: 0.6, blink: blinkAt(f, 35) }, life(f, 35))] },
