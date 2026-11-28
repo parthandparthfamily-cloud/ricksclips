@@ -1,0 +1,11 @@
+<!doctype html><html><body style="margin:0"><canvas id="c" width="2400" height="1500"></canvas>
+<script type="module">
+import * as T from './toon.js';
+const c = document.getElementById('c'), g = c.getContext('2d');
+g.fillStyle = '#eec05c'; g.fillRect(0, 0, 2400, 1500);
+const keys = Object.keys(T.CHARS); const ex = ['grin','stern','beam','smile','shock','smirk','laugh','think','nervous','grin','sly','bored','smugsmile','wink','neutral','beam','smile','shock','grin','laugh','smile'];
+keys.forEach((k, i) => { const col = i % 11, row = Math.floor(i / 11); g.save(); g.translate(110 + col * 215, 700 + row * 740); g.scale(0.95, 0.95);
+  T.drawChar(g, k, { expr: ex[i % ex.length], L: i % 3 ? 'hang' : 'wave', R: i % 4 ? 'hip' : 'point' }); g.restore();
+  g.font = 'bold 30px sans-serif'; g.fillStyle = '#2e211d'; g.textAlign = 'center'; g.fillText(k, 110 + col * 215, 740 + row * 740); });
+window.ready = true;
+</script></body></html>

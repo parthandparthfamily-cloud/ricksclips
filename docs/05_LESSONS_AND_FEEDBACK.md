@@ -52,3 +52,11 @@ Every mistake that has already happened once, so it never happens twice.
 - **Skipping the gate.** "Go" means run the checklist first, then ship.
 - **EEVEE "Shadow buffer full".** Too many shadow-casting lamps on a 6 GB GPU. Raise `shadow_pool_size`, halve `shadow_resolution_scale`,
   and let only key lights cast shadows.
+
+## From "Your Lost Bag Isn't Lost" (Nov 28 2026)
+- Sets built at different x offsets share one scene: big ground planes and hill spheres from one set can poke into another
+  (Alabama hills showed up inside the store as a giant green slope). Keep each set's terrain clear of the others' bounds.
+- 9:16 is narrow: at fov 50 and 6 m only ±1.6 m is visible. Extras placed "nearby" are usually out of frame; put them on the camera axis.
+- A camera passing within ~1.5 m of a card gives a cropped, over-zoomed face. Keep ≥ 2.2 m for close-ups, or swing the path wide.
+- Don't let an "open" prop (dumpster lid, mirror back panel) sit between the camera and the subject; check stills of every shot.
+- Cloud (swiftshader) render here: ~0.4 s/frame at 1/3 scale, enough for a full-video QA proxy in ~7 min with two workers.

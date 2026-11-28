@@ -1,0 +1,6 @@
+proxy/
+node_modules
+rendered/
+work/premix.wav
+frames_*.log
+frames/
