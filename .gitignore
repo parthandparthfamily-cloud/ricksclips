@@ -7,3 +7,8 @@ out/
 *.mp3
 *.mp4
 __pycache__/
+preview/
+logs/
+Rendered/
+projects/*/node_modules
+projects/*/sheet/*.png

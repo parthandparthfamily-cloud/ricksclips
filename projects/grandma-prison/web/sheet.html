@@ -1,0 +1,15 @@
+<!doctype html><html><head><meta charset="utf-8"><style>@font-face{font-family:'Lilita One';src:url(LilitaOne.ttf)}body{margin:0}</style></head><body><canvas id="c"></canvas>
+<script type="module">
+import * as T from './toon.js';
+await document.fonts.load('40px "Lilita One"');
+const names = Object.keys(T.PEOPLE), cols = 7, cw = 300, ch = 520;
+const c = document.getElementById('c'); c.width = cols * cw; c.height = Math.ceil(names.length / cols) * ch + 80;
+const g = c.getContext('2d'); g.fillStyle = '#e9c35d'; g.fillRect(0, 0, c.width, c.height);
+g.font = '44px "Lilita One"'; g.fillStyle = '#2b1f1c'; g.fillText('NEW CAST — Why Grandmas in Japan Want to Go to Prison', 30, 56);
+const ex = { hana: 'smugsmile', hanaIn: 'beam', fumiko: 'laugh', kenta: 'shock', guard: 'stern', police: 'stern', judge: 'stern', warden: 'smile', nurse: 'grin', son: 'nervous', daughter: 'bored', husband: 'smile', host: 'laugh', inmateA: 'grin', inmateB: 'laugh', inmateC: 'smile', salary: 'bored', student: 'grin', courier: 'neutral', granpa: 'sleepy' };
+const arms = { hana: ['hang', 'hold'], guard: ['hip', 'point'], police: ['hip', 'point'], host: ['up', 'wave'], judge: ['hang', 'holdUp'], nurse: ['hip', 'thumb'], son: ['hang', 'mouth'] };
+names.forEach((n, i) => { const x = (i % cols) * cw + cw / 2, y = Math.floor(i / cols) * ch + 80 + ch - 50;
+  g.save(); g.translate(x, y); g.scale(0.62, 0.62); const [L, R] = arms[n] || ['hang', 'hang']; T.person(g, T.PEOPLE[n], { expr: ex[n] || 'neutral', L, R }); g.restore();
+  g.font = '30px "Lilita One"'; g.textAlign = 'center'; g.fillText(n, x, y + 36); g.textAlign = 'left'; });
+window.ready = true;
+</script></body></html>
