@@ -52,3 +52,21 @@ Every mistake that has already happened once, so it never happens twice.
 - **Skipping the gate.** "Go" means run the checklist first, then ship.
 - **EEVEE "Shadow buffer full".** Too many shadow-casting lamps on a 6 GB GPU. Raise `shadow_pool_size`, halve `shadow_resolution_scale`,
   and let only key lights cast shadows.
+
+## From "The Village With No Doors" (Nov 28 2026, cloud-built end to end)
+- **Supplied word timings beat Whisper.** When the user hands over a transcript JSON with word times, convert it straight to work/words.json
+  (`{w,s,e}`) and don't tighten the voice: any silence trimming would shift every timestamp.
+- **Cloud has no local SFX folder.** Real CC0 sources reachable from the cloud box (git clone works; most web CDNs don't):
+  `facebookincubator/Meta-open-sound` (recorded Oculus audio pack: whooshes, foley, stingers, ambiences) and
+  `SoundSafari/CC0-1.0-Music` (FreePD = Kevin MacLeod public-domain tracks). Clone with `--filter=blob:none --no-checkout`
+  and check out only the files you need. Avoid "SFX packs" that are synthesized from code (adbertiser-sfx, wyzowl/sfx-kit, plinkfx).
+- **One world, one flight.** Building every location (street, room, bank, shrine plaza, police plot) inside one compact village lets the
+  camera fly between them (through doorways, over rooftops) and keeps hard cuts to 2. QA: composition change every 1.05 s, 99.95 % moving.
+- **Cards always face the camera**, so over-the-shoulder shots don't exist: use look-through-the-doorway compositions instead.
+  For a character lying down, use a fixed yaw (`fixedYaw`) plus a ±90° roll so the card lies along the bed.
+- **9:16 two-shots: compute the angles.** Two subjects more than ~30° apart (seen from the camera) won't both fit; aim the look point
+  at the middle of the two directions or move the people. Cameras near south-row houses must stay at z < 3.2, or they end up inside a wall.
+- **Shot boundaries leak.** If the camera is still flying when the next shot's actor list starts, a character can vanish mid-flight
+  (the bed emptied when 'pilgrims' started). Keep drawing the outgoing actors until the camera has left them.
+- **Ground planes z-fight at low res.** Layer road/yard/plaza at least ~7 mm apart.
+- 3 parallel swiftshader workers: ~0.25-res proxy ≈ 9 min for 73 s; full-res is several s/frame, so start it only after the gate passes.

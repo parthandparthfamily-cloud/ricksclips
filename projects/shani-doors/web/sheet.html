@@ -1,0 +1,14 @@
+<!doctype html><html><body style="margin:0;background:#e9c25e"><canvas id="c" width="2600" height="1300"></canvas>
+<script type="module">
+import * as T from './toon.js';
+const CAST = await (await fetch('./cast.json')).json();
+const g = document.getElementById('c').getContext('2d');
+g.fillStyle='#ecc35f'; g.fillRect(0,0,2600,1300);
+const names = Object.keys(CAST); const ex = ['grin','smile','laugh','nervous','wink','beam','think','smugsmile','shock','sly','stern','grin'];
+const arms = [['hang','wave'],['hip','point'],['hold','hang'],['hip','thumb'],['hang','up'],['hip','wave'],['hold','hang'],['hang','hang'],['hang','hold'],['hold','hip'],['chin','hip'],['hip','staff']];
+const props = [[null,'suitcase'],[null,null],['pot',null],[null,null],[null,'bat'],[null,null],[null,'cash'],[null,null],[null,null],[null,'camera'],['sack',null],[null,'baton']];
+names.forEach((n,i)=>{ const x = 130 + (i%6)*420, y = 600 + Math.floor(i/6)*640;
+  g.save(); g.translate(x+80,y); g.scale(0.78,0.78); T.rick(g, CAST[n], {expr: ex[i], L: arms[i][0], R: arms[i][1], propL: props[i][0], propR: props[i][1]}); g.restore();
+  g.fillStyle='#2e211d'; g.font='bold 40px sans-serif'; g.textAlign='center'; g.fillText(n, x+80, y+50); });
+window.done = true;
+</script></body></html>

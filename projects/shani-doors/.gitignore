@@ -1,0 +1,6 @@
+Raw/sfx/
+Raw/music/
+Rendered/
+work/
+node_modules
+*.ogg
